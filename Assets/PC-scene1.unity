@@ -6092,7 +6092,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestTrigger
   questToComplete: {fileID: 11400000, guid: 4562d975549285345a6db96614ad6ef0, type: 2}
-  targetDoor: {fileID: 5206132296425778240}
+  targetDoors:
+  - {fileID: 5206132296425778240}
 --- !u!1 &896274477
 GameObject:
   m_ObjectHideFlags: 0
@@ -10267,7 +10268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestTrigger
   questToComplete: {fileID: 11400000, guid: d915a8d8fcd92c44a8c1838bf5d8e321, type: 2}
-  targetDoor: {fileID: 6338932962576359463}
+  targetDoors: []
 --- !u!65 &1165128730
 BoxCollider:
   m_ObjectHideFlags: 0
