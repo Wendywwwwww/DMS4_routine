@@ -1044,7 +1044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &180772838
 Transform:
   m_ObjectHideFlags: 0
@@ -3909,7 +3909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &520252360
 Transform:
   m_ObjectHideFlags: 0
@@ -7466,15 +7466,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 79.93186
+      value: -22.210217
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 60.729527
+      value: 9.36997
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -123.30566
+      value: -23.948786
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12324,6 +12324,70 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3261104885291918553, guid: f122f17908d4f364a9a61fbb947bdd9e, type: 3}
+--- !u!1 &1663972651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663972653}
+  - component: {fileID: 1663972652}
+  m_Layer: 0
+  m_Name: _QuestTester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1663972652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663972651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81ea9ad941befe4e91f1b195298368e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestTestController
+  testQuestSequence:
+  - {fileID: 11400000, guid: 4562d975549285345a6db96614ad6ef0, type: 2}
+  - {fileID: 11400000, guid: 754778ec631069b4a830ec4d433a5c30, type: 2}
+  - {fileID: 11400000, guid: 0337279ce23efe04180d70e6e4e4ff51, type: 2}
+  - {fileID: 11400000, guid: 29f1bfb07037edf44830524efca5ac23, type: 2}
+  - {fileID: 11400000, guid: 313bff1352edd5940bb6b103c0b5b41a, type: 2}
+  - {fileID: 11400000, guid: 2c4adf612ec0ed2488f4f2060c9a3ebe, type: 2}
+  - {fileID: 11400000, guid: 75f5c3163855dae4a98d264ac9b53da6, type: 2}
+  - {fileID: 11400000, guid: d915a8d8fcd92c44a8c1838bf5d8e321, type: 2}
+  - {fileID: 11400000, guid: 1029bf15b859b60409fd1a01d5c84ef5, type: 2}
+  - {fileID: 11400000, guid: 1e1686fc0b29d8e48b4b46c61377b97a, type: 2}
+  - {fileID: 11400000, guid: 351bbd11790a2fb488f6341dd684b693, type: 2}
+  - {fileID: 11400000, guid: add036e1a4ac3c9448b2d52d1a6cced1, type: 2}
+  - {fileID: 11400000, guid: d166c350ba670094b81fa7c003f28414, type: 2}
+  - {fileID: 11400000, guid: 93ccee1f40c51a74c946112957eaaa6a, type: 2}
+  - {fileID: 11400000, guid: 1f424f518622c5b4abbce2e0d6c07451, type: 2}
+  - {fileID: 11400000, guid: 92f04c3c3e5d01048af6aec056fba109, type: 2}
+  - {fileID: 11400000, guid: afc736b34fb73914ebdba05c578821d2, type: 2}
+  - {fileID: 11400000, guid: ec184796118b23d4e979ae1759421473, type: 2}
+  showDebugWindow: 1
+--- !u!4 &1663972653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663972651}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.16071, y: 20.94637, z: 48.54044}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1670584033
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39248,8 +39312,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 72efb16d231f48948bdacb20bf44442d, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -53782,3 +53846,4 @@ SceneRoots:
   - {fileID: 1367740882}
   - {fileID: 1688998298}
   - {fileID: 701696747}
+  - {fileID: 1663972653}
