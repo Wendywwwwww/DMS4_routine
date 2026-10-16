@@ -2,104 +2,88 @@ using UnityEngine;
 using System.Collections.Generic;
 
 /// <summary>
-/// A testing utility script that allows developers to skip forward or backward 
-/// through a predefined list of quests during play mode.
+/// A strict sequential testing tool. Strictly follows the Inspector list order 
+/// without auto-skipping or guessing. Press 'N' to complete them one by one.
 /// </summary>
 public class QuestTestController : MonoBehaviour
 {
-    [Header("Test Quests Setup")]
-    [Tooltip("Drag your sequence of quests here in chronological order (Index 0 is Quest 1).")]
-    public List<QuestData> testQuestSequence = new List<QuestData>();
+    [Header("Quests to Complete in Order")]
+    [Tooltip("Drag your quests here in exact chronological order. Press 'N' to complete the current one.")]
+    public List<QuestData> testQuests = new List<QuestData>();
 
-    [Header("UI Display Settings")]
-    [Tooltip("Toggle to show or hide the on-screen debug control panel.")]
+    [Header("Display UI")]
     public bool showDebugWindow = true;
 
     private int currentIndex = 0;
 
     void Update()
     {
-        // Quick keyboard shortcuts for testing (N = Next Quest, P = Previous Quest)
+        // Press 'N' to complete the current index quest and move to the next
         if (Input.GetKeyDown(KeyCode.N))
         {
-            AdvanceToNextQuest();
-        }
-        else if (Input.GetKeyDown(KeyCode.P))
-        {
-            RevertToPreviousQuest();
+            CompleteCurrentIndexQuest();
         }
     }
 
     /// <summary>
-    /// Instantly completes the current quest and moves to the next one in the sequence.
+    /// Strictly completes the quest at the current index, then increments the pointer.
     /// </summary>
-    public void AdvanceToNextQuest()
+    public void CompleteCurrentIndexQuest()
     {
-        if (testQuestSequence == null || testQuestSequence.Count == 0) return;
+        if (testQuests == null || testQuests.Count == 0) return;
+        if (QuestManager.Instance == null) return;
 
-        if (currentIndex < testQuestSequence.Count)
+        if (currentIndex < testQuests.Count)
         {
-            QuestData currentQuest = testQuestSequence[currentIndex];
-            if (currentQuest != null && QuestManager.Instance != null)
+            QuestData targetQuest = testQuests[currentIndex];
+            if (targetQuest != null)
             {
-                // Force complete the current quest using the QuestManager
-                QuestManager.Instance.CompleteQuest(currentQuest);
-                Debug.Log($"[QuestTest] Skipped/Completed Quest [{currentIndex + 1}]: {currentQuest.questID}");
+                QuestManager.Instance.CompleteQuest(targetQuest);
+                
+                string questDisplayName = !string.IsNullOrEmpty(targetQuest.questID) 
+                    ? targetQuest.questID 
+                    : targetQuest.name;
+                    
+                Debug.Log($"[Quest Test] Successfully completed quest [{currentIndex + 1}/{testQuests.Count}]: {questDisplayName}");
             }
 
+            // Move to the next strict position
             currentIndex++;
         }
         else
         {
-            Debug.Log("[QuestTest] Already at the end of the quest sequence.");
+            Debug.Log("[Quest Test] Reached the end of the test quest list.");
         }
     }
 
-    /// <summary>
-    /// Resets or loops back (Note: QuestManager doesn't natively un-complete quests, 
-    /// but this shifts the test tracker pointer).
-    /// </summary>
-    public void RevertToPreviousQuest()
-    {
-        if (currentIndex > 0)
-        {
-            currentIndex--;
-            Debug.Log($"[QuestTest] Reverted test pointer to Quest [{currentIndex + 1}]: {testQuestSequence[currentIndex]?.questID}");
-        }
-    }
-
-    // Draw an on-screen IMGUI debug window for easy testing
     void OnGUI()
     {
         if (!showDebugWindow) return;
 
-        // Create a small window at the top-left corner of the screen
-        GUILayout.BeginArea(new Rect(10, 10, 300, 120), GUI.skin.box);
-        GUILayout.Label("<b>--- Quest Test Controller ---</b>");
+        GUILayout.BeginArea(new Rect(10, 10, 300, 100), GUI.skin.box);
+        GUILayout.Label("<b>Strict Sequential Quest Tester</b>");
 
-        if (testQuestSequence != null && testQuestSequence.Count > 0)
+        if (testQuests != null && testQuests.Count > 0)
         {
-            string currentQuestName = (currentIndex < testQuestSequence.Count && testQuestSequence[currentIndex] != null) 
-                ? testQuestSequence[currentIndex].questID 
-                : "None / Finished";
-
-            GUILayout.Label($"Current Quest Index: <b>{currentIndex + 1} / {testQuestSequence.Count}</b>");
-            GUILayout.Label($"Active Quest ID: <b>{currentQuestName}</b>");
-
-            GUILayout.BeginHorizontal();
-            if (GUILayout.Button("<< Prev (P)"))
+            string currentQuestName = "Finished All";
+            if (currentIndex < testQuests.Count && testQuests[currentIndex] != null)
             {
-                RevertToPreviousQuest();
+                currentQuestName = !string.IsNullOrEmpty(testQuests[currentIndex].questID) 
+                    ? testQuests[currentIndex].questID 
+                    : testQuests[currentIndex].name;
             }
-            if (GUILayout.Button("Next (N) >>"))
+
+            GUILayout.Label($"Progress: <b>{Mathf.Min(currentIndex + 1, testQuests.Count)} / {testQuests.Count}</b>");
+            GUILayout.Label($"Current Target: <b>{currentQuestName}</b>");
+
+            if (GUILayout.Button("Complete Current (N)"))
             {
-                AdvanceToNextQuest();
+                CompleteCurrentIndexQuest();
             }
-            GUILayout.EndHorizontal();
         }
         else
         {
-            GUILayout.Label("No test quests assigned in the list!");
+            GUILayout.Label("Assign quests in Inspector!");
         }
 
         GUILayout.EndArea();

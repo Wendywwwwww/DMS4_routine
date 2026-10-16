@@ -5,7 +5,7 @@ using System.Collections;
 /// <summary>
 /// Controls a door that can be opened/closed via raycast detection when pressing 'E', Mouse Left Click,
 /// or VR Controller Buttons, featuring adjustable rotation axis, direction, permanent locking support, 
-/// and an explicit empty object reference to act as the custom hinge pivot.
+/// an explicit empty object reference to act as the custom hinge pivot, and audio feedback for open/close states.
 /// </summary>
 public class ProximityDoor : MonoBehaviour
 {
@@ -32,6 +32,14 @@ public class ProximityDoor : MonoBehaviour
     [Header("VR Input Mappings")]
     [Tooltip("Bind your VR controller action here (e.g., RightHand/UI Press or Trigger).")]
     public InputActionProperty vrInteractionAction;
+
+    [Header("Audio Settings")]
+    [Tooltip("Audio clip to play when the door starts opening.")]
+    public AudioClip openSound;
+    [Tooltip("Audio clip to play when the door starts closing (or gets locked shut).")]
+    public AudioClip closeSound;
+    [Tooltip("Optional: Directly assign the AudioSource component. If left empty, it will auto-find on this GameObject.")]
+    public AudioSource doorAudioSource;
 
     private Camera playerCamera;
     private bool isOpen = false;
@@ -67,6 +75,12 @@ public class ProximityDoor : MonoBehaviour
     void Start()
     {
         playerCamera = Camera.main;
+
+        // Automatically find AudioSource if not assigned in Inspector
+        if (doorAudioSource == null)
+        {
+            doorAudioSource = GetComponent<AudioSource>();
+        }
 
         if (hingeObject != null)
         {
@@ -153,9 +167,20 @@ public class ProximityDoor : MonoBehaviour
             // Check if the ray hits this door or any of its child colliders
             if (hit.collider.gameObject == gameObject || hit.collider.transform.IsChildOf(transform))
             {
-                isOpen = !isOpen;
+                ToggleDoorState();
             }
         }
+    }
+
+    /// <summary>
+    /// Toggles the open/closed state of the door and plays the corresponding audio clip.
+    /// </summary>
+    private void ToggleDoorState()
+    {
+        if (isLockedShut) return;
+
+        isOpen = !isOpen;
+        PlayDoorSound(isOpen ? openSound : closeSound);
     }
 
     /// <summary>
@@ -164,20 +189,21 @@ public class ProximityDoor : MonoBehaviour
     /// </summary>
     public void ToggleDoor()
     {
-        if (!isLockedShut)
-        {
-            isOpen = !isOpen;
-        }
+        ToggleDoorState();
     }
 
     /// <summary>
-    /// Permanently closes and locks the door, and disables interaction components.
+    /// Permanently closes and locks the door, plays close sound, and disables interaction components.
     /// </summary>
     public void CloseAndLockDoor()
     {
+        if (isLockedShut) return;
+
         isLockedShut = true;
         isOpen = false;
         
+        PlayDoorSound(closeSound);
+
         // 1. Disable the interaction prompt script if attached
         ObjectInteractionPrompt interactionPrompt = GetComponent<ObjectInteractionPrompt>();
         if (interactionPrompt != null)
@@ -216,6 +242,17 @@ public class ProximityDoor : MonoBehaviour
                 yield return null;
             }
             transform.localRotation = closedRotation;
+        }
+    }
+
+    /// <summary>
+    /// Helper method to play a designated audio clip via the door's AudioSource.
+    /// </summary>
+    private void PlayDoorSound(AudioClip clip)
+    {
+        if (doorAudioSource != null && clip != null)
+        {
+            doorAudioSource.PlayOneShot(clip);
         }
     }
 
