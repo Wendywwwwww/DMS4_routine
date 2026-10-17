@@ -3247,7 +3247,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0f62ab245164d9498a18f8949cda9b2, type: 2}
+  - {fileID: 2100000, guid: eb9cf5e578145384487125a377721a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5114,6 +5114,82 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 9148106930174485795, guid: f122f17908d4f364a9a61fbb947bdd9e, type: 3}
+--- !u!1 &385444014
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 385444016}
+  - component: {fileID: 385444015}
+  - component: {fileID: 385444017}
+  m_Layer: 0
+  m_Name: trigger-fanrotate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &385444015
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385444014}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &385444016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385444014}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -65.8, y: 20.88716, z: 50.84}
+  m_LocalScale: {x: 4.050809, y: 2.9799, z: 5.1376452}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &385444017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385444014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854991f5f534a514cb64bcf4c88e6607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZoneRotateAndFade
+  playerTag: Player
+  objectsToRotate:
+  - {fileID: 8451618499697076535}
+  - {fileID: 8814376828569193186}
+  - {fileID: 2886727178006165185}
+  - {fileID: 4482292203029902324}
+  rotationAxis: {x: 1, y: 0, z: 0}
+  rotationSpeed: 60
+  cloneTag: CloneDuck
+  fadeDuration: 2
 --- !u!1 &394392710
 GameObject:
   m_ObjectHideFlags: 0
@@ -9760,7 +9836,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0f62ab245164d9498a18f8949cda9b2, type: 2}
+  - {fileID: 2100000, guid: eb9cf5e578145384487125a377721a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15219,7 +15295,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0f62ab245164d9498a18f8949cda9b2, type: 2}
+  - {fileID: 2100000, guid: eb9cf5e578145384487125a377721a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16821,7 +16897,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0f62ab245164d9498a18f8949cda9b2, type: 2}
+  - {fileID: 2100000, guid: eb9cf5e578145384487125a377721a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19638,7 +19714,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0f62ab245164d9498a18f8949cda9b2, type: 2}
+  - {fileID: 2100000, guid: eb9cf5e578145384487125a377721a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20879,7 +20955,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0f62ab245164d9498a18f8949cda9b2, type: 2}
+  - {fileID: 2100000, guid: eb9cf5e578145384487125a377721a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21719,7 +21795,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0f62ab245164d9498a18f8949cda9b2, type: 2}
+  - {fileID: 2100000, guid: eb9cf5e578145384487125a377721a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -27258,7 +27334,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0f62ab245164d9498a18f8949cda9b2, type: 2}
+  - {fileID: 2100000, guid: eb9cf5e578145384487125a377721a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30773,7 +30849,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0f62ab245164d9498a18f8949cda9b2, type: 2}
+  - {fileID: 2100000, guid: eb9cf5e578145384487125a377721a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -40196,7 +40272,7 @@ GameObject:
   - component: {fileID: 3959061118701386509}
   - component: {fileID: 2128171180}
   m_Layer: 0
-  m_Name: polySurface1006.004
+  m_Name: fan3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40223,7 +40299,7 @@ GameObject:
   - component: {fileID: 1837618497764472458}
   - component: {fileID: 994808979}
   m_Layer: 0
-  m_Name: polySurface1006.002
+  m_Name: fan4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40596,7 +40672,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e0f62ab245164d9498a18f8949cda9b2, type: 2}
+  - {fileID: 2100000, guid: eb9cf5e578145384487125a377721a2c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -40957,7 +41033,7 @@ GameObject:
   - component: {fileID: 6631188771892368609}
   - component: {fileID: 1910996906}
   m_Layer: 0
-  m_Name: polySurface1006.006
+  m_Name: fan1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50253,7 +50329,7 @@ GameObject:
   - component: {fileID: 6191268122209145675}
   - component: {fileID: 223146510}
   m_Layer: 0
-  m_Name: polySurface1006.008
+  m_Name: fan2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66891,6 +66967,7 @@ SceneRoots:
   - {fileID: 1228902127}
   - {fileID: 543450651674337223}
   - {fileID: 701696747}
+  - {fileID: 1606677833}
   - {fileID: 1367443785}
   - {fileID: 187332004}
   - {fileID: 12680765}
@@ -66898,4 +66975,4 @@ SceneRoots:
   - {fileID: 285740241}
   - {fileID: 1475319503}
   - {fileID: 46339053}
-  - {fileID: 1606677833}
+  - {fileID: 385444016}
