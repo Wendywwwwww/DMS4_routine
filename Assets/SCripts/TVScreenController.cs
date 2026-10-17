@@ -1,73 +1,100 @@
 using UnityEngine;
 
 /// <summary>
-/// Controls TV screen visibility, audio playback, and synchronizes the render camera's rotation and forward movement.
+/// Controls TV screen visibility, audio playback, and applies CUSTOMIZABLE relative rotation sync.
+/// Allows independent inversion of horizontal (left/right) and vertical (up/down) camera movements.
 /// </summary>
 public class TVScreenController : MonoBehaviour
 {
     [Header("Virtual Camera Settings")]
-    [Tooltip("The Virtual Camera used specifically to render to the Render Texture.")]
     public Transform virtualCamera;
-    
-    [Tooltip("The player's Main Camera. Used to synchronize rotation so the virtual camera looks exactly where the player looks.")]
+    public Transform targetQuad; 
     public Transform playerCamera;
-    
-    [Tooltip("Speed at which the virtual camera flies forward (along its local Z-axis/blue arrow).")]
-    public float cameraMoveSpeed = 2f;
+    public float cameraMoveSpeed = 0.3f; 
+
+    [Header("Rotation Inversion Settings")]
+    [Tooltip("If true, looking left moves the picture left (inverts Yaw).")]
+    public bool invertHorizontal = true; 
+    [Tooltip("If true, looking up moves the picture up (inverts Pitch). Uncheck this if up/down feels wrong!")]
+    public bool invertVertical = false;
 
     [Header("TV Screen Settings")]
-    [Tooltip("AudioSource for playing TV sounds (can be attached to the Quad or virtual camera).")]
     public AudioSource tvAudioSource;
-    
-    [Tooltip("MeshRenderer of the Quad (used to toggle screen visibility).")]
     public MeshRenderer screenRenderer;
 
     private bool isTVActive = false;
+    
+    // Variables to store the initial state
+    private Vector3 initialVCamPosition;
+    private Quaternion initialVCamRotation;
+    private Quaternion initialPlayerRotation;
 
     void Start()
     {
-        // Ensure the screen is hidden/black when the game starts
         if (screenRenderer != null) 
         {
             screenRenderer.enabled = false;
+        }
+
+        if (virtualCamera != null)
+        {
+            initialVCamPosition = virtualCamera.position;
+            initialVCamRotation = virtualCamera.rotation;
         }
     }
 
     void Update()
     {
-        // Execute camera logic only during the 30 seconds when the TV is active (player is seated)
-        if (isTVActive && virtualCamera != null)
+        if (isTVActive && virtualCamera != null && playerCamera != null && targetQuad != null)
         {
-            // 1. Real-time view sync: The virtual camera rotates exactly as the player's head/camera rotates
-            if (playerCamera != null)
-            {
-                virtualCamera.rotation = playerCamera.rotation;
-            }
+            // 1. Calculate the raw delta rotation since sitting down
+            Quaternion playerDeltaRotation = playerCamera.rotation * Quaternion.Inverse(initialPlayerRotation);
 
-            // 2. Continuously move forward along the virtual camera's local Z-axis (forward direction)
-            virtualCamera.Translate(Vector3.forward * cameraMoveSpeed * Time.deltaTime, Space.Self);
+            // 2. Convert to Euler angles to separate the axes
+            Vector3 deltaEuler = playerDeltaRotation.eulerAngles;
+
+            // 3. Normalize angles from (0 to 360) to (-180 to 180) for correct mathematical inversion
+            float pitchX = deltaEuler.x > 180f ? deltaEuler.x - 360f : deltaEuler.x;
+            float yawY = deltaEuler.y > 180f ? deltaEuler.y - 360f : deltaEuler.y;
+            float rollZ = deltaEuler.z > 180f ? deltaEuler.z - 360f : deltaEuler.z;
+
+            // 4. Apply independent inversion based on your inspector settings
+            if (invertVertical) pitchX = -pitchX;
+            if (invertHorizontal) yawY = -yawY;
+
+            // 5. Reconstruct the modified delta rotation
+            Quaternion modifiedDelta = Quaternion.Euler(pitchX, yawY, rollZ);
+
+            // 6. Apply to the virtual camera
+            virtualCamera.rotation = modifiedDelta * initialVCamRotation;
+
+            // 7. Move strictly towards the target
+            virtualCamera.position = Vector3.MoveTowards(
+                virtualCamera.position, 
+                targetQuad.position, 
+                cameraMoveSpeed * Time.deltaTime
+            );
         }
     }
 
-    /// <summary>
-    /// Turns on the TV: shows the Quad, plays audio, and starts camera flight.
-    /// </summary>
     public void TurnOnTV()
     {
+        if (virtualCamera != null && playerCamera != null)
+        {
+            virtualCamera.position = initialVCamPosition;
+            virtualCamera.rotation = initialVCamRotation;
+            initialPlayerRotation = playerCamera.rotation;
+        }
+
         isTVActive = true;
         if (screenRenderer != null) screenRenderer.enabled = true;
         if (tvAudioSource != null) tvAudioSource.Play();
-        Debug.Log("[TVScreen] TV turned on, camera moving!");
     }
 
-    /// <summary>
-    /// Turns off the TV: hides the Quad, stops audio, and stops camera flight.
-    /// </summary>
     public void TurnOffTV()
     {
         isTVActive = false;
         if (screenRenderer != null) screenRenderer.enabled = false;
         if (tvAudioSource != null) tvAudioSource.Stop();
-        Debug.Log("[TVScreen] TV turned off!");
     }
 }

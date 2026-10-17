@@ -2,40 +2,30 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using Unity.Cinemachine;
+using UnityEngine.Events;
 
 /// <summary>
-/// Handles smooth transition to a seated position, locks position (but allows looking around),
-/// applies a cinematic Cinemachine zoom over time, and automatically stands up after a set time.
+/// Handles smooth transition to a seated position, Cinemachine zoom, TV trigger events, 
+/// automatic stand-up after 30 seconds, and completing a draggable QuestData asset upon standing up.
 /// </summary>
 public class ChairInteraction : MonoBehaviour
 {
     [Header("Seat Transforms")]
-    [Tooltip("The exact position and rotation the player's head/body should snap to.")]
     public Transform sitPoint;
-    
-    [Tooltip("Where the player stands up (optional). If left empty, they stand up where they sat down.")]
     public Transform getUpPoint;
 
     [Header("Player Settings")]
-    [Tooltip("Drag the Player's root object here (e.g., XR Origin or Player Capsule).")]
     public Transform playerRoot;
+    public Transform tvScreenTarget;
 
     [Header("Transition & Timing Settings")]
-    [Tooltip("How fast the camera moves to the chair (lower is slower).")]
     public float transitionSpeed = 2f;
-    
-    [Tooltip("How many seconds the player stays seated before automatically standing up.")]
     public float autoStandUpTime = 30f; 
 
     [Header("Cinemachine Zoom Settings")]
-    [Tooltip("Cinemachine Camera here")]
     public CinemachineCamera vCam;
-    
-    [Tooltip("Enable FOV zoom effect while sitting?")]
     public bool enableZoom = true;
-    [Tooltip("like 40 to 25, Cinemachine Lens FOV will slowly zoom in over time")]
     public float targetZoomFOV = 25f;
-    [Tooltip("how many seconds it takes for the Cinemachine Lens FOV to reach the target zoom.")]
     public float zoomDuration = 15f;
 
     [Header("Interaction & Input Settings")]
@@ -44,9 +34,20 @@ public class ChairInteraction : MonoBehaviour
     public InputActionReference interactAction;
     public Transform vrRaySource;
 
+    [Header("Trigger Events (Link TV Here)")]
+    public UnityEvent onPlayerSatDown;
+    public UnityEvent onPlayerStoodUp;
+
+    [Header("Quest Completion Settings")]
+    [Tooltip("Check this if finishing the 30s session should complete a quest.")]
+    public bool completeQuestOnFinish = true;
+    [Tooltip("Drag your QuestData asset here to be completed via QuestManager when the player stands up after 30s.")]
+    public QuestData questToComplete; 
+
     private Camera playerCamera;
     private bool isSitting = false;
     private bool isTransitioning = false;
+    private bool completedByTimer = false; 
     
     private Coroutine autoStandRoutine;
     private Coroutine zoomRoutine;
@@ -55,7 +56,6 @@ public class ChairInteraction : MonoBehaviour
     void Start()
     {
         playerCamera = Camera.main;
-        
         if (vCam != null)
         {
             defaultFOV = vCam.Lens.FieldOfView;
@@ -67,26 +67,17 @@ public class ChairInteraction : MonoBehaviour
         if (isTransitioning) return;
 
         bool wasPressed = false;
+        if (interactAction != null && interactAction.action.WasPressedThisFrame()) wasPressed = true;
+        else if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) wasPressed = true;
 
-        if (interactAction != null && interactAction.action.WasPressedThisFrame())
-        {
-            wasPressed = true;
-        }
-        else if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            wasPressed = true;
-        }
-
-        if (wasPressed && !isSitting)
-        {
-            TryInteract();
-        }
+        if (wasPressed && !isSitting) TryInteract();
     }
 
     void LateUpdate()
     {
         if (isSitting && !isTransitioning)
         {
+            // Lock position completely, but allow camera rotation for looking around
             playerRoot.position = sitPoint.position;
         }
     }
@@ -94,14 +85,8 @@ public class ChairInteraction : MonoBehaviour
     private void TryInteract()
     {
         Ray ray;
-        if (vrRaySource != null)
-        {
-            ray = new Ray(vrRaySource.position, vrRaySource.forward);
-        }
-        else if (playerCamera != null)
-        {
-            ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-        }
+        if (vrRaySource != null) ray = new Ray(vrRaySource.position, vrRaySource.forward);
+        else if (playerCamera != null) ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         else return;
 
         RaycastHit hit;
@@ -120,6 +105,7 @@ public class ChairInteraction : MonoBehaviour
 
         if (!isSitting)
         {
+            completedByTimer = false;
             StartCoroutine(TransitionToPosition(sitPoint, true));
         }
         else
@@ -139,6 +125,7 @@ public class ChairInteraction : MonoBehaviour
             autoStandRoutine = null;
         }
 
+        // Quickly restore Cinemachine Lens FOV to normal when standing up
         if (!isSittingDown && enableZoom && vCam != null)
         {
             if (zoomRoutine != null) StopCoroutine(zoomRoutine);
@@ -147,6 +134,19 @@ public class ChairInteraction : MonoBehaviour
 
         Vector3 startPos = playerRoot.position;
         Quaternion startRot = playerRoot.rotation;
+        
+        Quaternion endRot = target.rotation; 
+        if (isSittingDown && tvScreenTarget != null)
+        {
+            Vector3 directionToScreen = tvScreenTarget.position - target.position;
+            directionToScreen.y = 0; 
+            
+            if (directionToScreen != Vector3.zero)
+            {
+                endRot = Quaternion.LookRotation(directionToScreen);
+            }
+        }
+
         float t = 0f;
 
         while (t < 1f)
@@ -155,13 +155,20 @@ public class ChairInteraction : MonoBehaviour
             float smoothStep = Mathf.SmoothStep(0f, 1f, t);
 
             playerRoot.position = Vector3.Lerp(startPos, target.position, smoothStep);
-            playerRoot.rotation = Quaternion.Lerp(startRot, target.rotation, smoothStep);
+            playerRoot.rotation = Quaternion.Lerp(startRot, endRot, smoothStep);
             
             yield return null; 
         }
 
         playerRoot.position = target.position;
-        playerRoot.rotation = target.rotation;
+        playerRoot.rotation = endRot;
+
+        if (isSittingDown && playerCamera != null && tvScreenTarget != null)
+        {
+            Vector3 camLocalEuler = playerCamera.transform.localEulerAngles;
+            camLocalEuler.x = 0f; 
+            playerCamera.transform.localEulerAngles = camLocalEuler;
+        }
 
         isSitting = isSittingDown;
         isTransitioning = false;
@@ -170,35 +177,54 @@ public class ChairInteraction : MonoBehaviour
         {
             autoStandRoutine = StartCoroutine(AutoStandUpTimer());
             
+            // Start cinematic Cinemachine zoom after sitting down
             if (enableZoom && vCam != null)
             {
                 if (zoomRoutine != null) StopCoroutine(zoomRoutine);
                 zoomRoutine = StartCoroutine(SmoothZoom(targetZoomFOV, zoomDuration));
             }
-        }
 
-        Debug.Log(isSitting ? "[Chair] Player sat down. Timer & Cinemachine Zoom started." : "[Chair] Player stood up.");
+            // Trigger Sat Down Event
+            onPlayerSatDown?.Invoke();
+        }
+        else
+        {
+            // Trigger Stood Up Event
+            onPlayerStoodUp?.Invoke();
+
+            // Complete the quest only if stood up automatically after 30s
+            if (completedByTimer && completeQuestOnFinish)
+            {
+                CompleteQuest();
+            }
+        }
     }
 
-    /// <summary>
-    /// Smoothly changes the Cinemachine Lens FOV over a specified duration.
-    /// </summary>
+    private void CompleteQuest()
+    {
+        if (QuestManager.Instance != null && questToComplete != null)
+        {
+            QuestManager.Instance.CompleteQuest(questToComplete);
+            Debug.Log($"[Chair] 30s completed! Quest asset marked as done: {questToComplete.name}");
+        }
+        else
+        {
+            Debug.LogWarning("[Chair] QuestManager.Instance or assigned questToComplete reference is missing!");
+        }
+    }
+
     private IEnumerator SmoothZoom(float targetFOV, float duration)
     {
         float startFOV = vCam.Lens.FieldOfView;
         float time = 0f;
-
         while (time < duration)
         {
             time += Time.deltaTime;
-            
             var lens = vCam.Lens;
             lens.FieldOfView = Mathf.Lerp(startFOV, targetFOV, time / duration);
             vCam.Lens = lens;
-            
             yield return null;
         }
-
         var finalLens = vCam.Lens;
         finalLens.FieldOfView = targetFOV;
         vCam.Lens = finalLens;
@@ -207,9 +233,10 @@ public class ChairInteraction : MonoBehaviour
     private IEnumerator AutoStandUpTimer()
     {
         yield return new WaitForSeconds(autoStandUpTime);
-
         if (isSitting && !isTransitioning)
         {
+            // Mark that this stand-up was triggered by the 30s timer
+            completedByTimer = true;
             InteractWithChair();
         }
     }
