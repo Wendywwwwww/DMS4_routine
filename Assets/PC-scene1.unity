@@ -14425,7 +14425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestFogTransitionController
   persistAcrossScenes: 1
   targetQuest: {fileID: 11400000, guid: 1029bf15b859b60409fd1a01d5c84ef5, type: 2}
-  targetSceneName: PC-scene2,3
+  targetSceneName: wendysPC-scene2,3
   canvasGroupToFade: {fileID: 628229500}
   fadePlaneRenderer: {fileID: 1036056406}
   meshFadeDuration: 7
