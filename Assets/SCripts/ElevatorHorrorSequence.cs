@@ -1,59 +1,60 @@
 using UnityEngine;
-using UnityEngine.UI; // Required for the white flash image
-using UnityEngine.SceneManagement; // Required for scene transition
+using UnityEngine.UI; 
+using UnityEngine.SceneManagement; 
 using System.Collections;
+using Unity.Cinemachine; 
 
 /// <summary>
-/// A standalone trigger script that executes a timed horror sequence:
-/// Delay -> Elevator Shake -> Light & Material Flicker -> White Screen Flash -> Load Scene.
+/// A standalone trigger script that executes a timed horror sequence using Cinemachine Noise:
+/// Delay -> Cinemachine Camera Shake -> Material Swap & Light Flicker -> White Screen Flash -> Load Scene.
 /// </summary>
 [RequireComponent(typeof(Collider))]
 public class ElevatorHorrorSequence : MonoBehaviour
 {
     [Header("Sequence Timings")]
-    [Tooltip("How long to wait after entering the trigger before the shake starts.")]
     public float initialDelay = 2f;
-    [Tooltip("How long the elevator shakes before the lights start flickering.")]
     public float shakeDurationBeforeFlicker = 3f;
-    [Tooltip("How long the lights flicker before the white flash starts.")]
     public float flickerDurationBeforeFlash = 4f;
-    [Tooltip("How long the white flash takes to fully cover the screen.")]
     public float flashDuration = 1.5f;
 
-    [Header("Elevator Shake Settings")]
-    [Tooltip("The mesh or container of the elevator that will shake.")]
-    public Transform shakeTarget;
-    public float shakeIntensity = 0.05f;
-    public float shakeSpeed = 25f;
+    [Header("Cinemachine Shake Settings")]
+    [Tooltip("Drag the Virtual Camera with the Cinemachine Camera component here.")]
+    public CinemachineCamera vCam; 
+    [Tooltip("Shake Amplitude - values in Cinemachine are typically between 1 and 5.")]
+    public float shakeAmplitude = 3f;
+    [Tooltip("Shake Frequency - determines the speed of the vibration.")]
+    public float shakeFrequency = 5f;
 
-    [Header("Light & Emission Flicker Settings")]
+    [Header("Light Component Flicker Settings")]
     [Tooltip("Real lights that will flicker.")]
     public Light[] targetLights;
-    [Tooltip("Meshes with emissive materials that will flicker.")]
-    public MeshRenderer[] emissiveRenderers;
-    [Tooltip("The base emission color. It will be multiplied to create the flicker effect.")]
-    [ColorUsage(true, true)] public Color baseEmissionColor = Color.white;
     public float minFlickerIntensity = 0f;
-    public float maxFlickerIntensity = 2f;
+    public float maxFlickerIntensity = 2.5f;
+    [Tooltip("How fast the flicker changes.")]
     public float flickerSpeed = 0.05f;
 
+    [Header("Material Swap Flicker Settings")]
+    [Tooltip("Meshes that will swap between Lit and Unlit materials.")]
+    public MeshRenderer[] targetRenderers;
+    [Tooltip("The material used when the light flickers OFF.")]
+    public Material unlitMaterial;
+    [Tooltip("The material used when the light flickers ON.")]
+    public Material litMaterial;
+
     [Header("Scene Transition")]
-    [Tooltip("The UI Image used for the white flash (must cover the whole screen).")]
     public Image whiteFlashImage;
-    [Tooltip("The exact name of the scene to load at the climax.")]
     public string nextSceneName = "Scene4";
 
     private bool hasTriggered = false;
-    private bool isShaking = false;
     private bool isFlickering = false;
-    private Vector3 originalLocalPos;
+    
+    // Caches the Cinemachine noise component
+    private CinemachineBasicMultiChannelPerlin cmNoise;
 
     private void Start()
     {
-        // Ensure the trigger is set up correctly
         GetComponent<Collider>().isTrigger = true;
 
-        // Ensure the flash image is transparent at the start
         if (whiteFlashImage != null)
         {
             Color c = whiteFlashImage.color;
@@ -61,66 +62,62 @@ public class ElevatorHorrorSequence : MonoBehaviour
             whiteFlashImage.color = c;
             whiteFlashImage.gameObject.SetActive(false);
         }
+
+        // Get and initialize the Cinemachine noise component
+        if (vCam != null)
+        {
+            cmNoise = vCam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+            if (cmNoise != null)
+            {
+                // Ensure there is no camera shake when the game starts
+                cmNoise.AmplitudeGain = 0f;
+                cmNoise.FrequencyGain = 0f;
+            }
+            else
+            {
+                Debug.LogWarning("[ElevatorSequence] Your Cinemachine Camera is missing the Noise component!");
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Only trigger once, and only by the Player
         if (!hasTriggered && other.CompareTag("Player"))
         {
             hasTriggered = true;
-            Debug.Log("[ElevatorSequence] Player entered trigger. Starting sequence...");
+            Debug.Log("[ElevatorSequence] Player entered trigger. Sequence initiated.");
             StartCoroutine(SequenceMasterRoutine());
         }
     }
 
-    private void Update()
-    {
-        // Handle shaking independently in Update so it doesn't block the coroutine
-        if (isShaking && shakeTarget != null)
-        {
-            float shakeX = (Mathf.PerlinNoise(Time.time * shakeSpeed, 0f) - 0.5f) * shakeIntensity;
-            float shakeZ = (Mathf.PerlinNoise(0f, Time.time * shakeSpeed) - 0.5f) * shakeIntensity;
-            float shakeY = (Mathf.PerlinNoise(Time.time * shakeSpeed, Time.time * shakeSpeed) - 0.5f) * (shakeIntensity * 0.5f);
-
-            shakeTarget.localPosition = originalLocalPos + new Vector3(shakeX, shakeY, shakeZ);
-        }
-    }
-
-    /// <summary>
-    /// The master timeline that controls the sequence of events.
-    /// </summary>
     private IEnumerator SequenceMasterRoutine()
     {
-        // 1. Initial Delay
         yield return new WaitForSeconds(initialDelay);
-        Debug.Log("[ElevatorSequence] Delay finished. Starting shake.");
+        Debug.Log("[ElevatorSequence] Starting Cinemachine Camera Shake.");
 
-        // 2. Start Shaking
-        if (shakeTarget != null)
+        // 1. Start Cinemachine Camera Shake
+        if (cmNoise != null)
         {
-            originalLocalPos = shakeTarget.localPosition;
-            isShaking = true;
+            cmNoise.AmplitudeGain = shakeAmplitude;
+            cmNoise.FrequencyGain = shakeFrequency;
         }
 
-        // Wait while shaking before turning on the flicker
         yield return new WaitForSeconds(shakeDurationBeforeFlicker);
-        Debug.Log("[ElevatorSequence] Starting light and material flicker.");
+        Debug.Log("[ElevatorSequence] Starting lights & material swap flickering.");
 
-        // 3. Start Flickering (runs concurrently)
+        // 2. Start Light & Material Flickering
         isFlickering = true;
         StartCoroutine(FlickerRoutine());
 
-        // Wait while flickering before the final flash
         yield return new WaitForSeconds(flickerDurationBeforeFlash);
-        Debug.Log("[ElevatorSequence] Starting white flash climax.");
+        Debug.Log("[ElevatorSequence] Reaching peak white flash.");
 
-        // 4. White Flash
+        // 3. Start White Screen Flash
         if (whiteFlashImage != null)
         {
             whiteFlashImage.gameObject.SetActive(true);
             float t = 0f;
-            Color flashColor = Color.white; // Or whatever color you set in the Inspector
+            Color flashColor = Color.white; 
 
             while (t < flashDuration)
             {
@@ -131,52 +128,45 @@ public class ElevatorHorrorSequence : MonoBehaviour
             }
         }
 
-        // Ensure shake stops exactly when the flash peaks (optional cleanup)
-        isShaking = false;
         isFlickering = false;
 
-        Debug.Log($"[ElevatorSequence] Transitioning to {nextSceneName}...");
+        // 4. Stop Camera Shake (Cleanup)
+        if (cmNoise != null)
+        {
+            cmNoise.AmplitudeGain = 0f;
+            cmNoise.FrequencyGain = 0f;
+        }
 
-        // 5. Transition to the next scene
+        Debug.Log($"[ElevatorSequence] Launching transition to {nextSceneName}...");
         SceneManager.LoadScene(nextSceneName);
     }
 
-    /// <summary>
-    /// Handles the randomized flickering of Lights and Emissive Materials.
-    /// </summary>
     private IEnumerator FlickerRoutine()
     {
-        // Pre-enable emission keyword on all target materials
-        foreach (MeshRenderer renderer in emissiveRenderers)
-        {
-            if (renderer != null)
-            {
-                renderer.material.EnableKeyword("_EMISSION");
-            }
-        }
-
         while (isFlickering)
         {
+            // Flicker real lights
             float randomIntensity = Random.Range(minFlickerIntensity, maxFlickerIntensity);
-
-            // Flicker actual Lights
             foreach (Light l in targetLights)
             {
                 if (l != null) l.intensity = randomIntensity;
             }
 
-            // Flicker Emissive Materials
-            foreach (MeshRenderer renderer in emissiveRenderers)
+            // Randomly decide if the material should be ON or OFF this frame
+            bool isLightOn = Random.value > 0.5f;
+            Material currentMat = isLightOn ? litMaterial : unlitMaterial;
+
+            // Apply the chosen material to all target renderers
+            foreach (MeshRenderer renderer in targetRenderers)
             {
-                if (renderer != null)
+                if (renderer != null && currentMat != null)
                 {
-                    // Multiply the base emission color by the random intensity
-                    renderer.material.SetColor("_EmissionColor", baseEmissionColor * randomIntensity);
+                    renderer.material = currentMat;
                 }
             }
 
-            // Wait a tiny random fraction of a second before the next flicker change
-            yield return new WaitForSeconds(Random.Range(flickerSpeed, flickerSpeed + 0.1f));
+            // High frequency delay
+            yield return new WaitForSeconds(Random.Range(flickerSpeed, flickerSpeed + 0.08f));
         }
     }
 }
