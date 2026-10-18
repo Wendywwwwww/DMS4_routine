@@ -1614,9 +1614,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestLightingManager
   sunLight: {fileID: 562684298}
   globalVolume: {fileID: 1602284506}
-  zoneSunColor: {r: 1, g: 1, b: 1, a: 1}
+  zoneSunColor: {r: 1, g: 0.8157317, b: 0.60188675, a: 1}
   zoneSunIntensity: 2
-  zoneFogTint: {r: 0.22318968, g: 0.26175937, b: 0.4867924, a: 1}
+  zoneFogTint: {r: 1, g: 0.47824326, b: 0.035294116, a: 1}
   zoneFogAttenuation: 3
   transitionDuration: 3
 --- !u!65 &1524415402
