@@ -20323,6 +20323,7 @@ GameObject:
   - component: {fileID: 252997178437121690}
   - component: {fileID: 1751167521856803745}
   - component: {fileID: 5891823394205431431}
+  - component: {fileID: 7915870091267562246}
   m_Layer: 0
   m_Name: lamp
   m_TagString: Untagged
@@ -20462,6 +20463,23 @@ MonoBehaviour:
   itemAudioSource: {fileID: 0}
   outlinableComponent: {fileID: 1751167521856803745}
   targetInteractionScripts: []
+--- !u!114 &7915870091267562246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7931546580657244124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e206876706decdb449365ce9e78a9a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndingTrigger
+  screenOverlay: {fileID: 0}
+  flickerDuration: 1.5
+  flickerSpeed: 0.08
+  fadeToBlackDuration: 2
+  endingSceneName: CreditsScene
 --- !u!1 &7959614690241558429
 GameObject:
   m_ObjectHideFlags: 0

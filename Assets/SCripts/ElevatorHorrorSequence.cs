@@ -1,12 +1,12 @@
 using UnityEngine;
-using UnityEngine.UI; 
-using UnityEngine.SceneManagement; 
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
-using Unity.Cinemachine; 
+using Unity.Cinemachine;
 
 /// <summary>
 /// A standalone trigger script that executes a timed horror sequence using Cinemachine Noise:
-/// Delay -> Cinemachine Camera Shake -> Material Swap & Light Flicker -> White Screen Flash -> Load Scene.
+/// Delay -> Cinemachine Camera Shake -> Delayed Turbulence Audio -> Material Swap & Light Flicker -> Screen Flash -> Load Scene.
 /// </summary>
 [RequireComponent(typeof(Collider))]
 public class ElevatorHorrorSequence : MonoBehaviour
@@ -19,11 +19,19 @@ public class ElevatorHorrorSequence : MonoBehaviour
 
     [Header("Cinemachine Shake Settings")]
     [Tooltip("Drag the Virtual Camera with the Cinemachine Camera component here.")]
-    public CinemachineCamera vCam; 
+    public CinemachineCamera vCam;
     [Tooltip("Shake Amplitude - values in Cinemachine are typically between 1 and 5.")]
     public float shakeAmplitude = 3f;
     [Tooltip("Shake Frequency - determines the speed of the vibration.")]
     public float shakeFrequency = 5f;
+
+    [Header("Audio Settings")]
+    [Tooltip("Drag your Audio Source here, or leave empty and it will auto-grab/add one.")]
+    public AudioSource horrorAudioSource;
+    [Tooltip("The turbulence/rumble sound clip to play during the camera shake.")]
+    public AudioClip turbulenceSound;
+    [Tooltip("How many seconds to wait after the camera shake starts before playing the audio.")]
+    public float audioStartDelay = 0.5f;
 
     [Header("Light Component Flicker Settings")]
     [Tooltip("Real lights that will flicker.")]
@@ -47,7 +55,7 @@ public class ElevatorHorrorSequence : MonoBehaviour
 
     private bool hasTriggered = false;
     private bool isFlickering = false;
-    
+
     // Caches the Cinemachine noise component
     private CinemachineBasicMultiChannelPerlin cmNoise;
 
@@ -62,6 +70,20 @@ public class ElevatorHorrorSequence : MonoBehaviour
             whiteFlashImage.color = c;
             whiteFlashImage.gameObject.SetActive(false);
         }
+
+        // Setup Audio Source if not manually assigned
+        if (horrorAudioSource == null)
+        {
+            horrorAudioSource = GetComponent<AudioSource>();
+            if (horrorAudioSource == null)
+            {
+                horrorAudioSource = gameObject.AddComponent<AudioSource>();
+            }
+        }
+
+        // Configure audio for 3D spatial sound environment
+        horrorAudioSource.spatialBlend = 1.0f;
+        horrorAudioSource.playOnAwake = false;
 
         // Get and initialize the Cinemachine noise component
         if (vCam != null)
@@ -95,29 +117,32 @@ public class ElevatorHorrorSequence : MonoBehaviour
         yield return new WaitForSeconds(initialDelay);
         Debug.Log("[ElevatorSequence] Starting Cinemachine Camera Shake.");
 
-        // 1. Start Cinemachine Camera Shake
+        // 1. Start Cinemachine Camera Shake immediately
         if (cmNoise != null)
         {
             cmNoise.AmplitudeGain = shakeAmplitude;
             cmNoise.FrequencyGain = shakeFrequency;
         }
 
+        // 2. Start the Audio after its own specific delay
+        StartCoroutine(PlayAudioWithDelayRoutine());
+
         yield return new WaitForSeconds(shakeDurationBeforeFlicker);
         Debug.Log("[ElevatorSequence] Starting lights & material swap flickering.");
 
-        // 2. Start Light & Material Flickering
+        // 3. Start Light & Material Flickering
         isFlickering = true;
         StartCoroutine(FlickerRoutine());
 
         yield return new WaitForSeconds(flickerDurationBeforeFlash);
-        Debug.Log("[ElevatorSequence] Reaching peak white flash.");
+        Debug.Log("[ElevatorSequence] Reaching peak white/black flash.");
 
-        // 3. Start White Screen Flash
+        // 4. Start Screen Flash
         if (whiteFlashImage != null)
         {
             whiteFlashImage.gameObject.SetActive(true);
             float t = 0f;
-            Color flashColor = Color.white; 
+            Color flashColor = Color.black;
 
             while (t < flashDuration)
             {
@@ -130,15 +155,36 @@ public class ElevatorHorrorSequence : MonoBehaviour
 
         isFlickering = false;
 
-        // 4. Stop Camera Shake (Cleanup)
+        // 5. Stop Camera Shake & Audio (Cleanup)
         if (cmNoise != null)
         {
             cmNoise.AmplitudeGain = 0f;
             cmNoise.FrequencyGain = 0f;
         }
 
+        if (horrorAudioSource != null && horrorAudioSource.isPlaying)
+        {
+            horrorAudioSource.Stop();
+        }
+
         Debug.Log($"[ElevatorSequence] Launching transition to {nextSceneName}...");
         SceneManager.LoadScene(nextSceneName);
+    }
+
+    private IEnumerator PlayAudioWithDelayRoutine()
+    {
+        if (audioStartDelay > 0f)
+        {
+            yield return new WaitForSeconds(audioStartDelay);
+        }
+
+        if (horrorAudioSource != null && turbulenceSound != null)
+        {
+            horrorAudioSource.clip = turbulenceSound;
+            horrorAudioSource.loop = true;
+            horrorAudioSource.Play();
+            Debug.Log("[ElevatorSequence] Turbulence audio started.");
+        }
     }
 
     private IEnumerator FlickerRoutine()
