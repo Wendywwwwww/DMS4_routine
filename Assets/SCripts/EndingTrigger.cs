@@ -1,18 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
 
 /// <summary>
 /// Triggers an ending sequence when left-clicked on a Box Collider:
-/// Rapid Black/White screen flicker -> Smooth fade to solid black -> Scene transition.
+/// Auto-finds the correct UI image (starts hidden) -> Turns on -> Rapid Black/White screen flicker -> 
+/// Disables specified objects -> Smooth fade to solid black and stays black.
 /// </summary>
 [RequireComponent(typeof(Collider))]
 public class EndingTrigger : MonoBehaviour
 {
-    [Header("UI Screen Overlay")]
-    [Tooltip("Drag a full-screen UI Image here (used for the flicker and fade to black).")]
-    public Image screenOverlay;
+    [Header("UI Matching")]
+    [Tooltip("Type a keyword found in your screen overlay image's name (e.g., 'Overlay', 'Fade', 'Black', or 'Panel').")]
+    public string imageNameKeyword = "Overlay";
 
     [Header("Sequence Timings")]
     [Tooltip("How long the black and white flicker lasts before fading.")]
@@ -22,10 +22,11 @@ public class EndingTrigger : MonoBehaviour
     [Tooltip("How long the final fade to solid black takes.")]
     public float fadeToBlackDuration = 2.0f;
 
-    [Header("Scene Transition")]
-    [Tooltip("Name of the credits or ending scene to load when complete.")]
-    public string endingSceneName = "CreditsScene";
+    [Header("Objects to Disable (e.g. Sounds, Player, UI)")]
+    [Tooltip("Drag any objects you want to turn off right before the fade to black (e.g., ambient sound objects).")]
+    public GameObject[] objectsToDisable;
 
+    private Image screenOverlay;
     private bool hasTriggered = false;
 
     private void Start()
@@ -34,26 +35,40 @@ public class EndingTrigger : MonoBehaviour
         Collider col = GetComponent<Collider>();
         if (col != null)
         {
-            col.isTrigger = false; // Set to false so raycasts/clicks can hit it easily
+            col.isTrigger = false;
         }
 
-        // Hide and reset the overlay at start
+        // Search all UI Images in the scene (including inactive ones) for the keyword
+        Image[] foundImages = FindObjectsByType<Image>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (Image img in foundImages)
+        {
+            if (img.gameObject.name.Contains(imageNameKeyword))
+            {
+                screenOverlay = img;
+                break;
+            }
+        }
+
+        // Fallback: if no name matched, grab the first image found as a backup
+        if (screenOverlay == null && foundImages.Length > 0)
+        {
+            screenOverlay = foundImages[0];
+            Debug.LogWarning($"[EndingTrigger] Couldn't find an image matching '{imageNameKeyword}', so defaulting to '{screenOverlay.name}'.");
+        }
+
         if (screenOverlay != null)
         {
-            Color c = screenOverlay.color;
-            c.a = 0f;
-            screenOverlay.color = c;
+            // Turn it OFF at the start so it doesn't show a black square on your screen
             screenOverlay.gameObject.SetActive(false);
+            Debug.Log($"[EndingTrigger] Successfully auto-linked UI Image: '{screenOverlay.name}'");
         }
         else
         {
-            Debug.LogWarning("[EndingTrigger] Screen Overlay Image is not assigned!");
+            Debug.LogError("[EndingTrigger] Could not find any UI Image in the scene! Make sure you have a UI Canvas with an Image component.");
         }
     }
 
-    /// <summary>
-    /// Unity's built-in method that fires when you left-click on this object's collider.
-    /// </summary>
     private void OnMouseDown()
     {
         if (!hasTriggered)
@@ -64,13 +79,11 @@ public class EndingTrigger : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Coroutine handling the flicker, fade to black, and scene load.
-    /// </summary>
     private IEnumerator EndingSequenceRoutine()
     {
         if (screenOverlay == null) yield break;
 
+        // Turn the black screen object ON right when the sequence starts
         screenOverlay.gameObject.SetActive(true);
         float timer = 0f;
 
@@ -78,33 +91,37 @@ public class EndingTrigger : MonoBehaviour
         while (timer < flickerDuration)
         {
             timer += flickerSpeed;
-
-            // Randomly flash between pure white and pure black at full opacity
             screenOverlay.color = Random.value > 0.5f ? Color.white : Color.black;
-
             yield return new WaitForSeconds(flickerSpeed);
         }
 
-        // 2. Fade to Solid Black Phase
+        // 2. Disable specified objects right before fading out
+        if (objectsToDisable != null)
+        {
+            foreach (GameObject obj in objectsToDisable)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(false);
+                }
+            }
+        }
+
+        // 3. Fade to Solid Black Phase
         float fadeTimer = 0f;
         Color startColor = screenOverlay.color;
         Color targetColor = Color.black;
-        targetColor.a = 1f; // Solid black
+        targetColor.a = 1f;
 
         while (fadeTimer < fadeToBlackDuration)
         {
             fadeTimer += Time.deltaTime;
-            float progress = fadeTimer / fadeToBlackDuration;
 
-            screenOverlay.color = Color.Lerp(startColor, targetColor, progress);
+            screenOverlay.color = Color.Lerp(startColor, targetColor, fadeTimer / fadeToBlackDuration);
             yield return null;
         }
 
-        // Ensure it's 100% solid black at the end
         screenOverlay.color = targetColor;
-
-        // 3. Load Ending / Credits Scene
-        Debug.Log($"[EndingTrigger] Loading ending scene: {endingSceneName}");
-        SceneManager.LoadScene(endingSceneName);
+        Debug.Log("[EndingTrigger] Ending sequence complete. Screen is now solid black.");
     }
 }
