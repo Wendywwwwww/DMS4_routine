@@ -217,8 +217,8 @@ MonoBehaviour:
   prerequisiteQuest: {fileID: 11400000, guid: afc736b34fb73914ebdba05c578821d2, type: 2}
   uiText: {fileID: 1254494257}
   textToDisplay: Sleep.
-  delayBeforeTyping: 5
-  typingSpeed: 0.05
+  delayBeforeTyping: 6
+  typingSpeed: 0.5
   delayAfterTyping: 1.5
   nextSceneName: PC-scene1
 --- !u!4 &504642783
