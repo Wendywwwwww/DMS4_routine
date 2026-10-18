@@ -906,7 +906,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4c8eb9d2f709b4449bb1a5cba0b5a4ec, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -915,7 +915,7 @@ AudioSource:
   Priority: 211
   DopplerLevel: 0.64
   MinDistance: 0.78859043
-  MaxDistance: 72.60964
+  MaxDistance: 4025.7598
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -1000,7 +1000,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 17.3, y: 22.571001, z: -45.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4806, y: 1.4806, z: 1.4806}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1595,7 +1595,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -89.37, y: 21.3, z: 48.3}
-  m_LocalScale: {x: 5976.5977, y: 5175.6772, z: 5080.61}
+  m_LocalScale: {x: 18113.873, y: 15686.443, z: 15398.3125}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1261342734}
@@ -1617,7 +1617,7 @@ MonoBehaviour:
   zoneSunColor: {r: 1, g: 1, b: 1, a: 1}
   zoneSunIntensity: 2
   zoneFogTint: {r: 0.22318968, g: 0.26175937, b: 0.4867924, a: 1}
-  zoneFogAttenuation: 10
+  zoneFogAttenuation: 3
   transitionDuration: 3
 --- !u!65 &1524415402
 BoxCollider:
