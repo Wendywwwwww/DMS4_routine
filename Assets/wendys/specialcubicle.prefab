@@ -18277,6 +18277,175 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7373865885298633983, guid: defe4a0e4404a744d9472a2247cb018f, type: 3}
+--- !u!1 &7112866268347048134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8614618235766865311}
+  - component: {fileID: 462236916944720388}
+  - component: {fileID: 3229358005794702322}
+  - component: {fileID: 3069059015980036612}
+  - component: {fileID: 5937937947042052366}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8614618235766865311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112866268347048134}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.5042106, z: -0, w: 0.8635807}
+  m_LocalPosition: {x: -0.08716, y: 0.053239755, z: -0.1576}
+  m_LocalScale: {x: 0.04359543, y: 0.043595437, z: 0.04359543}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6033933435432310304}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &462236916944720388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112866268347048134}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3229358005794702322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112866268347048134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e206876706decdb449365ce9e78a9a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndingTrigger
+  imageNameKeyword: BlackScreen
+  flickerDuration: 1.5
+  flickerSpeed: 0.08
+  fadeToBlackDuration: 2
+  objectsToDisable:
+  - {fileID: 2543181531448091998}
+--- !u!114 &3069059015980036612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112866268347048134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EPO::EPOOutline.Outlinable
+  complexMaskingMode: 0
+  drawingMode: 1
+  outlineLayer: 0
+  outlineTargets:
+  - CutoutMask: 8
+    renderer: {fileID: 7103828811855458272}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    cutoutTextureIndex: 0
+  - CutoutMask: 8
+    renderer: {fileID: 7103828811855458272}
+    SubmeshIndex: 1
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    cutoutTextureIndex: 0
+  renderStyle: 2
+  outlineParameters:
+    enabled: 0
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  backParameters:
+    enabled: 0
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  frontParameters:
+    enabled: 1
+    color: {r: 0.37711412, g: 0.7106918, b: 0.36428538, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+--- !u!114 &5937937947042052366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7112866268347048134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55080daa2765c07478196451914dc199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThreeStateQuestItem
+  targetQuest: {fileID: 11400000, guid: afc736b34fb73914ebdba05c578821d2, type: 2}
+  behaviorType: 2
+  interactionKey: 101
+  interactionDistance: 3
+  vrInteractionAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Vr Interaction
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1c5faa92-363d-4941-adac-c881950de4ab
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  itemParts: []
+  itemAudioSource: {fileID: 0}
+  outlinableComponent: {fileID: 1751167521856803745}
+  targetInteractionScripts: []
 --- !u!1 &7138187335398726940
 GameObject:
   m_ObjectHideFlags: 0
@@ -20322,8 +20491,8 @@ GameObject:
   - component: {fileID: 8818819161771304174}
   - component: {fileID: 252997178437121690}
   - component: {fileID: 1751167521856803745}
-  - component: {fileID: 5891823394205431431}
   - component: {fileID: 7915870091267562246}
+  - component: {fileID: 5891823394205431431}
   m_Layer: 0
   m_Name: lamp
   m_TagString: Untagged
@@ -20431,6 +20600,23 @@ MonoBehaviour:
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
+--- !u!114 &7915870091267562246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7931546580657244124}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e206876706decdb449365ce9e78a9a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndingTrigger
+  imageNameKeyword: Overlay
+  flickerDuration: 1.5
+  flickerSpeed: 0.08
+  fadeToBlackDuration: 2
+  objectsToDisable: []
 --- !u!114 &5891823394205431431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20463,23 +20649,6 @@ MonoBehaviour:
   itemAudioSource: {fileID: 0}
   outlinableComponent: {fileID: 1751167521856803745}
   targetInteractionScripts: []
---- !u!114 &7915870091267562246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7931546580657244124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e206876706decdb449365ce9e78a9a94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EndingTrigger
-  screenOverlay: {fileID: 0}
-  flickerDuration: 1.5
-  flickerSpeed: 0.08
-  fadeToBlackDuration: 2
-  endingSceneName: CreditsScene
 --- !u!1 &7959614690241558429
 GameObject:
   m_ObjectHideFlags: 0
@@ -24252,12 +24421,15 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 81719eb6c1d1a0b43a0f0996c7bead5b, type: 3}
       insertIndex: 0
-      addedObject: {fileID: 8818819161771304174}
+      addedObject: {fileID: 8614618235766865311}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 81719eb6c1d1a0b43a0f0996c7bead5b, type: 3}
       insertIndex: 1
-      addedObject: {fileID: 693200073253941450}
+      addedObject: {fileID: 8818819161771304174}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 81719eb6c1d1a0b43a0f0996c7bead5b, type: 3}
       insertIndex: 2
+      addedObject: {fileID: 693200073253941450}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 81719eb6c1d1a0b43a0f0996c7bead5b, type: 3}
+      insertIndex: 3
       addedObject: {fileID: 1464897762904192047}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 81719eb6c1d1a0b43a0f0996c7bead5b, type: 3}
       insertIndex: -1
