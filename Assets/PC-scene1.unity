@@ -10816,7 +10816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestTrigger
   questToComplete: {fileID: 11400000, guid: d915a8d8fcd92c44a8c1838bf5d8e321, type: 2}
   targetDoors:
-  - {fileID: 0}
+  - {fileID: 6338932962576359468}
 --- !u!65 &1165128730
 BoxCollider:
   m_ObjectHideFlags: 0
