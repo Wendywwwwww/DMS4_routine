@@ -18444,7 +18444,7 @@ MonoBehaviour:
     m_Reference: {fileID: 0}
   itemParts: []
   itemAudioSource: {fileID: 0}
-  outlinableComponent: {fileID: 1751167521856803745}
+  outlinableComponent: {fileID: 3069059015980036612}
   targetInteractionScripts: []
 --- !u!1 &7138187335398726940
 GameObject:
@@ -20489,10 +20489,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8818819161771304174}
+  - component: {fileID: 5891823394205431431}
   - component: {fileID: 252997178437121690}
   - component: {fileID: 1751167521856803745}
   - component: {fileID: 7915870091267562246}
-  - component: {fileID: 5891823394205431431}
   m_Layer: 0
   m_Name: lamp
   m_TagString: Untagged
@@ -20516,6 +20516,38 @@ Transform:
   - {fileID: 8277319753904395407}
   m_Father: {fileID: 6033933435432310304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5891823394205431431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7931546580657244124}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55080daa2765c07478196451914dc199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThreeStateQuestItem
+  targetQuest: {fileID: 11400000, guid: afc736b34fb73914ebdba05c578821d2, type: 2}
+  behaviorType: 2
+  interactionKey: 101
+  interactionDistance: 3
+  vrInteractionAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Vr Interaction
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1c5faa92-363d-4941-adac-c881950de4ab
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  itemParts: []
+  itemAudioSource: {fileID: 0}
+  outlinableComponent: {fileID: 1751167521856803745}
+  targetInteractionScripts: []
 --- !u!65 &252997178437121690
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20533,7 +20565,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.4322592, y: 0.8388059, z: 0.3763457}
   m_Center: {x: -0.038244653, y: 0.08059705, z: -0.018721854}
@@ -20544,7 +20576,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7931546580657244124}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
   m_Name: 
@@ -20616,39 +20648,8 @@ MonoBehaviour:
   flickerDuration: 1.5
   flickerSpeed: 0.08
   fadeToBlackDuration: 2
-  objectsToDisable: []
---- !u!114 &5891823394205431431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7931546580657244124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55080daa2765c07478196451914dc199, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ThreeStateQuestItem
-  targetQuest: {fileID: 11400000, guid: afc736b34fb73914ebdba05c578821d2, type: 2}
-  behaviorType: 2
-  interactionKey: 101
-  interactionDistance: 3
-  vrInteractionAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Vr Interaction
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 1c5faa92-363d-4941-adac-c881950de4ab
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  itemParts: []
-  itemAudioSource: {fileID: 0}
-  outlinableComponent: {fileID: 1751167521856803745}
-  targetInteractionScripts: []
+  objectsToDisable:
+  - {fileID: 2543181531448091998}
 --- !u!1 &7959614690241558429
 GameObject:
   m_ObjectHideFlags: 0
