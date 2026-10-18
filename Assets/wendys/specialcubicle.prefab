@@ -18345,7 +18345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e206876706decdb449365ce9e78a9a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndingTrigger
-  imageNameKeyword: BlackScreen
+  uiImageObjectName: BlackScreen
   flickerDuration: 1.5
   flickerSpeed: 0.08
   fadeToBlackDuration: 2
@@ -20612,7 +20612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e206876706decdb449365ce9e78a9a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndingTrigger
-  imageNameKeyword: Overlay
+  uiImageObjectName: BlackScreenPanel
   flickerDuration: 1.5
   flickerSpeed: 0.08
   fadeToBlackDuration: 2
