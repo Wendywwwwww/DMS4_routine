@@ -627,6 +627,8 @@ GameObject:
   - component: {fileID: 104359464}
   - component: {fileID: 104359466}
   - component: {fileID: 104359465}
+  - component: {fileID: 104359468}
+  - component: {fileID: 104359467}
   m_Layer: 0
   m_Name: BoilEggs
   m_TagString: Untagged
@@ -786,6 +788,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &104359467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104359463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc5dbca402b78b3479586263229b549c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestAudioPlayer
+  targetQuest: {fileID: 11400000, guid: 313bff1352edd5940bb6b103c0b5b41a, type: 2}
+--- !u!114 &104359468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104359463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc5dbca402b78b3479586263229b549c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestAudioPlayer
+  targetQuest: {fileID: 11400000, guid: 29f1bfb07037edf44830524efca5ac23, type: 2}
 --- !u!1 &109503801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2966,7 +2994,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.28
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5752,7 +5780,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.24
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -21559,7 +21587,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a4f719f855a9a91479dc1e013d85220e, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 98e00b7c03bca0247bb2d4f14a009e75, type: 2}
   - {fileID: 2100000, guid: 9f22d25a76ad8cf41b7609fc1cf48811, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -21720,7 +21748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3167182243349881045
 Transform:
   m_ObjectHideFlags: 0
@@ -25220,7 +25248,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  openSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: a0a55e61fbf28dd4cb11ac14669bc6b5, type: 3}
   closeSound: {fileID: 0}
   doorAudioSource: {fileID: 0}
 --- !u!114 &5206132296425778242
@@ -25987,6 +26015,7 @@ GameObject:
   - component: {fileID: 8110317856989372089}
   - component: {fileID: 8110317856989372092}
   - component: {fileID: 8110317856989372093}
+  - component: {fileID: 8110317856989372096}
   m_Layer: 0
   m_Name: fridgedoor-down
   m_TagString: Untagged
@@ -32807,9 +32836,9 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
-  doorAudioSource: {fileID: 0}
+  openSound: {fileID: 8300000, guid: f7aa5e66ffb1dd6489debafaf8da7139, type: 3}
+  closeSound: {fileID: 8300000, guid: 55f1663ae7250dc4f8265a57feea60b8, type: 3}
+  doorAudioSource: {fileID: 8110317856989372096}
 --- !u!114 &8110317856989372094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32849,6 +32878,103 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.21343172, y: 1.1022549, z: 0.9614685}
   m_Center: {x: 0.05650121, y: 0, z: -0.48073417}
+--- !u!82 &8110317856989372096
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5626648463084727965}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &8119211090636597458
 Transform:
   m_ObjectHideFlags: 0
@@ -32925,14 +33051,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 617290299344216503}
   serializedVersion: 2
-  m_LocalRotation: {x: -6.123235e-17, y: 1, z: 6.123235e-17, w: 0.00000019470718}
+  m_LocalRotation: {x: -0.023744639, y: 0.9984965, z: -0.007002261, w: 0.0489091}
   m_LocalPosition: {x: -0.304781, y: 2.0621324, z: 3.0467978}
   m_LocalScale: {x: 0.12482012, y: 0.13965188, z: 0.13190386}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1341056752839178083}
   m_Father: {fileID: 6658624357613099284}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.668, y: 174.375, z: -2.757}
 --- !u!1001 &8204767107702687029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33311,8 +33437,8 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: f7aa5e66ffb1dd6489debafaf8da7139, type: 3}
+  closeSound: {fileID: 8300000, guid: 55f1663ae7250dc4f8265a57feea60b8, type: 3}
   doorAudioSource: {fileID: 0}
 --- !u!64 &8356539346509833806
 MeshCollider:
