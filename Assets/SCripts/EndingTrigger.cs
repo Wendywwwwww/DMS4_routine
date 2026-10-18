@@ -5,6 +5,10 @@ using System.Collections;
 [RequireComponent(typeof(Collider))]
 public class EndingTrigger : MonoBehaviour
 {
+    [Header("Quest Completion")]
+    [Tooltip("Drag your designated QuestData (e.g., Quest 14) here. It will automatically complete when the ending is triggered.")]
+    public QuestData questToComplete;
+
     [Header("UI Lookup by Name (For Prefabs)")]
     [Tooltip("Type the exact name of your black screen UI Image GameObject in your scene hierarchy here.")]
     public string uiImageObjectName = "BlackScreenPanel";
@@ -25,7 +29,7 @@ public class EndingTrigger : MonoBehaviour
         Collider col = GetComponent<Collider>();
         if (col != null) col.isTrigger = false;
 
-        // Automatically find the UI image by name at runtime (works even if it's inactive/hidden)
+        // Automatically find the UI image by name at runtime
         Image[] allImages = FindObjectsByType<Image>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (var img in allImages)
         {
@@ -38,7 +42,7 @@ public class EndingTrigger : MonoBehaviour
 
         if (screenOverlay != null)
         {
-            screenOverlay.gameObject.SetActive(false); // Hide it at start
+            screenOverlay.gameObject.SetActive(false);
         }
         else
         {
@@ -46,13 +50,28 @@ public class EndingTrigger : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    // Use this public method to trigger the ending via VR interactors (e.g., XR Simple Interactable)
+    public void TriggerEndingSequence()
     {
         if (!hasTriggered && screenOverlay != null)
         {
             hasTriggered = true;
+            
+            // Core fix: Notify the system to complete the designated quest here!
+            if (questToComplete != null && QuestManager.Instance != null)
+            {
+                QuestManager.Instance.CompleteQuest(questToComplete);
+                Debug.Log($"[EndingTrigger] Triggered! Completing quest: {questToComplete.questID}");
+            }
+
             StartCoroutine(EndingSequenceRoutine());
         }
+    }
+
+    // Retained for PC mouse click testing compatibility
+    private void OnMouseDown()
+    {
+        TriggerEndingSequence();
     }
 
     private IEnumerator EndingSequenceRoutine()
@@ -68,7 +87,7 @@ public class EndingTrigger : MonoBehaviour
             yield return new WaitForSeconds(flickerSpeed);
         }
 
-        // 2. Disable specified objects (sounds, player, etc.)
+        // 2. Disable specified objects
         if (objectsToDisable != null)
         {
             foreach (GameObject obj in objectsToDisable)
@@ -86,7 +105,6 @@ public class EndingTrigger : MonoBehaviour
         {
             fadeTimer += Time.deltaTime;
             float progress = fadeTimer / fadeToBlackDuration;
-
             screenOverlay.color = Color.Lerp(startColor, targetColor, progress);
             yield return null;
         }
