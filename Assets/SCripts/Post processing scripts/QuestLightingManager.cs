@@ -4,42 +4,36 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 
 /// <summary>
-/// Changes sun lighting and HDRP fog settings smoothly when the player enters a trigger zone.
+/// Changes sun lighting and HDRP fog tint/attenuation smoothly when entering a trigger zone.
 /// </summary>
 [RequireComponent(typeof(BoxCollider))]
 public class QuestLightingManager : MonoBehaviour
 {
-    [Header("Target References (Assign once or leave empty to auto-find)")]
+    [Header("Target References (PLEASE DRAG MANUALLY!)")]
     [Tooltip("Drag your directional light (sun) here.")]
     public Light sunLight;
     [Tooltip("Drag your HDRP Global Volume here.")]
     public Volume globalVolume;
 
     [Header("Zone Lighting Settings")]
-    [Tooltip("Target color/brightness for the sun in this zone.")]
     public Color zoneSunColor = Color.white;
-    [Tooltip("Target intensity/brightness level for the sun in this zone.")]
-    public float zoneSunIntensity = 1.0f;
+    public float zoneSunIntensity = 50000f; // Default to a real HDRP daylight value
 
     [Header("Zone HDRP Fog Settings")]
-    [Tooltip("Target fog color for this zone.")]
-    public Color zoneFogColor = Color.gray;
-    [Tooltip("Target fog attenuation / mean free path for this zone (lower = thicker fog).")]
-    public float zoneFogAttenuation = 20f;
+    public Color zoneFogTint = Color.yellow;
+    public float zoneFogAttenuation = 10f;
 
     [Header("Transition Settings")]
-    [Tooltip("How many seconds the lighting transition takes when entering the zone.")]
     public float transitionDuration = 2.0f;
 
-    private static Coroutine activeTransition;
+    private Coroutine activeTransition;
 
     void Awake()
     {
-        // Ensure the collider is strictly set as a trigger
         BoxCollider boxCol = GetComponent<BoxCollider>();
         boxCol.isTrigger = true;
 
-        // Auto-find references if left empty in Inspector using modern non-deprecated Unity methods
+        // Fallback auto-find if you forgot to drag it in
         if (sunLight == null)
         {
             sunLight = Object.FindFirstObjectByType<Light>();
@@ -52,30 +46,30 @@ public class QuestLightingManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if it's the player
-        if (other.CompareTag("Player") || other.name.Contains("Player"))
+        Debug.Log($"[QuestLightingManager] Trigger entered by '{other.name}' on zone '{gameObject.name}'");
+
+        // Safety check before starting
+        if (sunLight == null)
         {
-            if (activeTransition != null)
-            {
-                StopCoroutine(activeTransition);
-            }
-            activeTransition = StartCoroutine(BlendToZoneLighting());
-            Debug.Log($"[QuestLightingManager] Player entered zone: {gameObject.name}. Transitioning atmosphere.");
+            Debug.LogError($"[QuestLightingManager] ERROR: No Sun Light assigned on zone '{gameObject.name}'! Drag your sun into the slot!");
+            return;
         }
+
+        if (activeTransition != null)
+        {
+            StopCoroutine(activeTransition);
+        }
+        activeTransition = StartCoroutine(BlendToZoneLighting());
     }
 
-    /// <summary>
-    /// Smoothly blends current scene lighting/fog into this zone's settings.
-    /// </summary>
     private IEnumerator BlendToZoneLighting()
     {
         float elapsedTime = 0f;
 
-        // Capture starting values from the scene right now
-        Color startSunColor = sunLight != null ? sunLight.color : Color.white;
-        float startSunIntensity = sunLight != null ? sunLight.intensity : 1.0f;
+        Color startSunColor = sunLight.color;
+        float startSunIntensity = sunLight.intensity;
 
-        Color startFogColor = Color.white;
+        Color startFogTint = Color.white;
         float startFogAttenuation = 50f;
 
         Fog hdrpFog = null;
@@ -84,7 +78,7 @@ public class QuestLightingManager : MonoBehaviour
             globalVolume.profile.TryGet(out hdrpFog);
             if (hdrpFog != null)
             {
-                startFogColor = hdrpFog.color.value;
+                startFogTint = hdrpFog.tint.value;
                 startFogAttenuation = hdrpFog.meanFreePath.value;
             }
         }
@@ -94,21 +88,21 @@ public class QuestLightingManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = Mathf.Clamp01(elapsedTime / transitionDuration);
 
-            // Lerp Sun
-            if (sunLight != null)
-            {
-                sunLight.color = Color.Lerp(startSunColor, zoneSunColor, t);
-                sunLight.intensity = Mathf.Lerp(startSunIntensity, zoneSunIntensity, t);
-            }
+            // Directly modify the sun
+            sunLight.color = Color.Lerp(startSunColor, zoneSunColor, t);
+            sunLight.intensity = Mathf.Lerp(startSunIntensity, zoneSunIntensity, t);
 
-            // Lerp HDRP Fog
             if (hdrpFog != null)
             {
-                hdrpFog.color.value = Color.Lerp(startFogColor, zoneFogColor, t);
+                hdrpFog.tint.value = Color.Lerp(startFogTint, zoneFogTint, t);
                 hdrpFog.meanFreePath.value = Mathf.Lerp(startFogAttenuation, zoneFogAttenuation, t);
             }
 
             yield return null;
         }
+
+        // Force final exact values just in case
+        sunLight.intensity = zoneSunIntensity;
+        sunLight.color = zoneSunColor;
     }
 }

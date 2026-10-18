@@ -1,25 +1,21 @@
 using UnityEngine;
 
 /// <summary>
-/// Plays a 3D audio clip via an AudioSource when a target object (like the player) 
-/// enters this trigger collider. Can play once or repeat.
+/// Triggers and plays all AudioSource components found on this object 
+/// when any object enters the trigger collider.
 /// </summary>
 [RequireComponent(typeof(BoxCollider))]
-[RequireComponent(typeof(AudioSource))]
 public class TriggerAudioOnCollision : MonoBehaviour
 {
-    [Header("Audio Settings")]
-    [Tooltip("The sound effect to play when triggered.")]
-    public AudioClip soundToPlay;
-
-    [Tooltip("If checked, the sound will only play the first time the player enters.")]
+    [Header("Trigger Settings")]
+    [Tooltip("If checked, the sounds will only play the first time something enters.")]
     public bool playOnlyOnce = true;
 
-    [Header("Trigger Filter")]
-    [Tooltip("The tag required to trigger this sound (e.g., 'Player'). Leave blank to trigger on anything.")]
-    public string requiredTag = "Player";
+    [Header("Options")]
+    [Tooltip("If checked, will also search child objects for AudioSources.")]
+    public bool includeChildren = true;
 
-    private AudioSource audioSource;
+    private AudioSource[] audioSources;
     private bool hasTriggered = false;
 
     void Start()
@@ -28,12 +24,24 @@ public class TriggerAudioOnCollision : MonoBehaviour
         BoxCollider boxCol = GetComponent<BoxCollider>();
         boxCol.isTrigger = true;
 
-        // 2. Cache the AudioSource component
-        audioSource = GetComponent<AudioSource>();
+        // 2. Gather all AudioSource components automatically
+        if (includeChildren)
+        {
+            audioSources = GetComponentsInChildren<AudioSource>();
+        }
+        else
+        {
+            audioSources = GetComponents<AudioSource>();
+        }
 
-        // Ensure the AudioSource is configured for 3D spatial sound so it comes from this location
-        audioSource.spatialBlend = 1.0f;
-        audioSource.playOnAwake = false;
+        // Configure them for 3D spatial playback and ensure they don't loop/play on awake
+        foreach (var source in audioSources)
+        {
+            source.spatialBlend = 1.0f;
+            source.playOnAwake = false;
+        }
+
+        Debug.Log($"[TriggerAudioOnCollision] Initialized on '{gameObject.name}' with {audioSources.Length} AudioSource(s) found.");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,14 +49,21 @@ public class TriggerAudioOnCollision : MonoBehaviour
         // Check if we already played and only wanted it once
         if (playOnlyOnce && hasTriggered) return;
 
-        // Check if the object matching our required tag entered (or if tag filter is empty)
-        bool matchesTag = string.IsNullOrEmpty(requiredTag) || other.CompareTag(requiredTag) || other.name.Contains(requiredTag);
-
-        if (matchesTag && soundToPlay != null)
+        if (audioSources != null && audioSources.Length > 0)
         {
-            audioSource.PlayOneShot(soundToPlay);
+            foreach (var source in audioSources)
+            {
+                if (source != null && source.clip != null)
+                {
+                    source.Play();
+                    Debug.Log($"--> Playing audio source clip: '{source.clip.name}' on object '{source.gameObject.name}'.");
+                }
+            }
             hasTriggered = true;
-            Debug.Log($"[TriggerAudioOnCollision] Played sound '{soundToPlay.name}' from object '{gameObject.name}'.");
+        }
+        else
+        {
+            Debug.LogWarning($"--> WARNING: Trigger entered by '{other.name}', but no AudioSource components were found on '{gameObject.name}'!");
         }
     }
 }
