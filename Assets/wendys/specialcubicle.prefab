@@ -2145,6 +2145,7 @@ GameObject:
   - component: {fileID: 6611816156706763064}
   - component: {fileID: 6878349164881348635}
   - component: {fileID: 7128331115580166795}
+  - component: {fileID: 4790951142414483582}
   - component: {fileID: 5396820746990142319}
   - component: {fileID: 8680942622814842080}
   - component: {fileID: 4377839605261950719}
@@ -2229,6 +2230,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4790951142414483582
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754549406398128065}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5064651, y: 1.5532889, z: 0.9719186}
+  m_Center: {x: -131.08467, y: -153.21327, z: -10.530431}
 --- !u!64 &5396820746990142319
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2246,7 +2268,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -19067,6 +19089,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3229358005794702322}
+        m_TargetAssemblyTypeName: EndingTrigger, Assembly-CSharp
+        m_MethodName: TriggerEndingSequence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -21951,6 +21985,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8621342151040964749}
         m_TargetAssemblyTypeName: ThreeStateQuestItem, Assembly-CSharp
         m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8683733156094763571}
+        m_TargetAssemblyTypeName: SimpleChairSit, Assembly-CSharp
+        m_MethodName: SitDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
