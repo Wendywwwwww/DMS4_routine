@@ -5859,6 +5859,7 @@ GameObject:
   - component: {fileID: 327760320}
   - component: {fileID: 327760321}
   - component: {fileID: 327760322}
+  - component: {fileID: 327760323}
   m_Layer: 0
   m_Name: door-ball-left
   m_TagString: Untagged
@@ -6125,6 +6126,92 @@ MonoBehaviour:
   openSound: {fileID: 8300000, guid: 071c3c3573c205d4ca548094f076f0bd, type: 3}
   closeSound: {fileID: 0}
   doorAudioSource: {fileID: 327760321}
+--- !u!114 &327760323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327760313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 327760322}
+        m_TargetAssemblyTypeName: ProximityDoor, Assembly-CSharp
+        m_MethodName: ToggleDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!64 &330921111
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6727,11 +6814,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -125435165217083709, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
 --- !u!64 &351218849
@@ -8000,11 +8087,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6791245462303577121, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
 --- !u!1 &439270986
@@ -10180,11 +10267,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1217187441332380930, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
 --- !u!64 &541636028
@@ -14298,7 +14385,7 @@ Transform:
   m_GameObject: {fileID: 797661080}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -32.94, y: 20.889, z: 127.48826}
+  m_LocalPosition: {x: -32.94, y: 26.64, z: 127.48826}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15512,11 +15599,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4967950573002663131, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
 --- !u!1 &855438740
@@ -16871,7 +16958,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 886408226}
+        m_TargetAssemblyTypeName: ProximityDoor, Assembly-CSharp
+        m_MethodName: ToggleDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -18922,7 +19021,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -22690,11 +22789,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2696586467331926977, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
 --- !u!64 &1126349046
@@ -24942,8 +25041,9 @@ GameObject:
   - component: {fileID: 1270706351}
   - component: {fileID: 1270706350}
   - component: {fileID: 1270706349}
+  - component: {fileID: 1270706354}
   m_Layer: 3
-  m_Name: Cylinder.065
+  m_Name: ladder10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24957,12 +25057,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270706347}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 1.4996302e-15, z: 1.7892629e-15, w: 0.7071067}
-  m_LocalPosition: {x: -0.38393328, y: 0.26, z: -2.6692953}
-  m_LocalScale: {x: 0.44928423, y: 2.1442287, z: 0.22011317}
+  m_LocalRotation: {x: 0.50000006, y: -0.49999997, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -5.812229, y: 17.026274, z: -13.967552}
+  m_LocalScale: {x: 0.12586164, y: 0.6006802, z: 0.10944272}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1733018950}
+  m_Father: {fileID: 1291984706164941146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1270706349
 MeshCollider:
@@ -25043,6 +25143,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270706347}
   m_Mesh: {fileID: 1418337770082825235, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
+--- !u!114 &1270706354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270706347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
 --- !u!64 &1272506002
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25456,7 +25571,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6782013408926625374}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -25894,11 +26009,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4461665956560914720, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
 --- !u!135 &1311518050
@@ -28140,11 +28255,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3116369807608469340, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
 --- !u!1 &1412627552
@@ -34454,7 +34569,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1663972652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34468,15 +34583,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestTestController
   testQuests:
-  - {fileID: 11400000, guid: 4562d975549285345a6db96614ad6ef0, type: 2}
-  - {fileID: 11400000, guid: 754778ec631069b4a830ec4d433a5c30, type: 2}
-  - {fileID: 11400000, guid: 0337279ce23efe04180d70e6e4e4ff51, type: 2}
-  - {fileID: 11400000, guid: 29f1bfb07037edf44830524efca5ac23, type: 2}
-  - {fileID: 11400000, guid: 313bff1352edd5940bb6b103c0b5b41a, type: 2}
-  - {fileID: 11400000, guid: 2c4adf612ec0ed2488f4f2060c9a3ebe, type: 2}
-  - {fileID: 11400000, guid: 75f5c3163855dae4a98d264ac9b53da6, type: 2}
-  - {fileID: 11400000, guid: d915a8d8fcd92c44a8c1838bf5d8e321, type: 2}
-  - {fileID: 11400000, guid: 1029bf15b859b60409fd1a01d5c84ef5, type: 2}
   - {fileID: 11400000, guid: 1e1686fc0b29d8e48b4b46c61377b97a, type: 2}
   - {fileID: 11400000, guid: 351bbd11790a2fb488f6341dd684b693, type: 2}
   - {fileID: 11400000, guid: add036e1a4ac3c9448b2d52d1a6cced1, type: 2}
@@ -34485,7 +34591,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1f424f518622c5b4abbce2e0d6c07451, type: 2}
   - {fileID: 11400000, guid: 92f04c3c3e5d01048af6aec056fba109, type: 2}
   - {fileID: 11400000, guid: afc736b34fb73914ebdba05c578821d2, type: 2}
-  - {fileID: 11400000, guid: ec184796118b23d4e979ae1759421473, type: 2}
   showDebugWindow: 1
 --- !u!4 &1663972653
 Transform:
@@ -36615,8 +36720,10 @@ GameObject:
   - component: {fileID: 1733018953}
   - component: {fileID: 1733018952}
   - component: {fileID: 1733018951}
+  - component: {fileID: 1733018956}
+  - component: {fileID: 1733018957}
   m_Layer: 3
-  m_Name: Cylinder.066 (1)
+  m_Name: ladder9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36634,8 +36741,7 @@ Transform:
   m_LocalPosition: {x: -6.56, y: 16.897, z: -13.86}
   m_LocalScale: {x: 0.28013813, y: 0.49721113, z: 0.28013813}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1270706348}
+  m_Children: []
   m_Father: {fileID: 1291984706164941146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1733018951
@@ -36653,11 +36759,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2696586467331926977, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
 --- !u!23 &1733018952
@@ -36717,6 +36823,42 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1733018949}
   m_Mesh: {fileID: 2696586467331926977, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
+--- !u!114 &1733018956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733018949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
+--- !u!65 &1733018957
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733018949}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.9938267, y: 9.679999, z: 7.47685}
+  m_Center: {x: -0.00003054738, y: 3.8342957, z: -2.7414963}
 --- !u!1 &1735487920
 GameObject:
   m_ObjectHideFlags: 0
@@ -38125,7 +38267,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2911541820017556631}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -38570,6 +38712,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 1680501587, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.36
+      objectReference: {fileID: 0}
     - target: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_HDR
       value: 0
@@ -38586,6 +38732,10 @@ PrefabInstance:
       propertyPath: m_ForceIntoRT
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 658028464602686504, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_SphereCastLayerMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 942810691211101373, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: 'm_StartingGroupMembers.Array.data[0]'
       value: 
@@ -38599,8 +38749,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1178791450436251564, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_CameraYOffset
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178791450436251564, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_RequestedTrackingOriginMode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Name
@@ -38620,7 +38774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 61.94
+      value: 62.788
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -38704,11 +38858,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6232745470614056090, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Height
-      value: 0.72
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 6232745470614056090, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Center.y
-      value: 1.08
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232745470614056090, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6480925242510836759, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Enabled
@@ -38728,7 +38886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7054646180837666701, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_JumpHeight
-      value: 2
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 7347985736721345035, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_Enabled
@@ -40899,7 +41057,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862772681}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -40937,7 +41095,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4325330369225871407, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
 --- !u!1 &1866317893
@@ -43662,6 +43820,7 @@ GameObject:
   - component: {fileID: 1962688825}
   - component: {fileID: 1962688824}
   - component: {fileID: 1962688823}
+  - component: {fileID: 1962688830}
   m_Layer: 0
   m_Name: eggstryagainaginaginagainagian
   m_TagString: Untagged
@@ -43908,6 +44067,92 @@ Transform:
   - {fileID: 242103097}
   m_Father: {fileID: 1627241399}
   m_LocalEulerAnglesHint: {x: 0, y: -154.839, z: 0}
+--- !u!114 &1962688830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962688822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable
+  m_InteractionManager: {fileID: 1699339736}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1962688824}
+        m_TargetAssemblyTypeName: ThreeStateQuestItem, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!64 &1962709972
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48766,6 +49011,7 @@ GameObject:
   - component: {fileID: 2080535540}
   - component: {fileID: 2080535541}
   - component: {fileID: 2080535542}
+  - component: {fileID: 2080535543}
   m_Layer: 0
   m_Name: cloth
   m_TagString: Untagged
@@ -49009,6 +49255,92 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2080535543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080535537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable
+  m_InteractionManager: {fileID: 1699339736}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2080535540}
+        m_TargetAssemblyTypeName: ThreeStateQuestItem, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!64 &2094150204
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -49782,6 +50114,7 @@ GameObject:
   - component: {fileID: 2122550263}
   - component: {fileID: 2122550264}
   - component: {fileID: 2122550265}
+  - component: {fileID: 2122550266}
   m_Layer: 0
   m_Name: door-ball-right
   m_TagString: Untagged
@@ -50048,6 +50381,92 @@ MonoBehaviour:
   openSound: {fileID: 8300000, guid: 071c3c3573c205d4ca548094f076f0bd, type: 3}
   closeSound: {fileID: 0}
   doorAudioSource: {fileID: 2122550264}
+--- !u!114 &2122550266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122550256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2122550265}
+        m_TargetAssemblyTypeName: ProximityDoor, Assembly-CSharp
+        m_MethodName: ToggleDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!1 &2123259659
 GameObject:
   m_ObjectHideFlags: 0
@@ -51196,12 +51615,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395442441557744930}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 1.4996302e-15, z: 1.7892629e-15, w: 0.7071067}
-  m_LocalPosition: {x: -0.38393328, y: 0.11900146, z: -2.6692953}
-  m_LocalScale: {x: 0.44928423, y: 2.1442287, z: 0.20953181}
+  m_LocalRotation: {x: 0.50000006, y: -0.49999997, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -14.386757, y: 17.003374, z: -10.077545}
+  m_LocalScale: {x: 0.12586164, y: 0.6006802, z: 0.12586164}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7126479690773642657}
+  m_Father: {fileID: 1291984706164941146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &48783895236858771
 MeshFilter:
@@ -52645,8 +53064,9 @@ GameObject:
   - component: {fileID: 7715843365632651342}
   - component: {fileID: 1762322831770007759}
   - component: {fileID: 485862263}
+  - component: {fileID: 7715843365632651345}
   m_Layer: 3
-  m_Name: Cylinder.065
+  m_Name: ladder8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55774,6 +56194,24 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5469477951506732128}
+  - {fileID: 5407411999924151504}
+  - {fileID: 1882875473948003225}
+  - {fileID: 2973717418581699774}
+  - {fileID: 4323075836280097942}
+  - {fileID: 4285151699704610037}
+  - {fileID: 7126479690773642657}
+  - {fileID: 26629475027304828}
+  - {fileID: 1733018950}
+  - {fileID: 1270706348}
+  - {fileID: 6886663142425683253}
+  - {fileID: 7273774408873354101}
+  - {fileID: 7536082286726771669}
+  - {fileID: 1245096634589936438}
+  - {fileID: 3031851041035782416}
+  - {fileID: 4835657598960108615}
+  - {fileID: 3430230341516321610}
+  - {fileID: 8609368542516007949}
   - {fileID: 5211714661827607747}
   - {fileID: 6640501335235768623}
   - {fileID: 7648296145960277037}
@@ -55801,10 +56239,8 @@ Transform:
   - {fileID: 4577997982210597048}
   - {fileID: 1509225545086751306}
   - {fileID: 3092218612317991303}
-  - {fileID: 5469477951506732128}
   - {fileID: 4065879085098717469}
   - {fileID: 6396851618823572853}
-  - {fileID: 5407411999924151504}
   - {fileID: 5713907878284699309}
   - {fileID: 2310655446485022651}
   - {fileID: 2713718881882314063}
@@ -55821,27 +56257,14 @@ Transform:
   - {fileID: 9076600580396382445}
   - {fileID: 2427328177232000352}
   - {fileID: 3573280002152012785}
-  - {fileID: 1882875473948003225}
-  - {fileID: 2973717418581699774}
   - {fileID: 1048112591}
   - {fileID: 4777375641989580469}
   - {fileID: 3696039339151765427}
   - {fileID: 1831907413085991900}
   - {fileID: 7996907043043799563}
-  - {fileID: 4323075836280097942}
   - {fileID: 2006051583732388789}
-  - {fileID: 4285151699704610037}
-  - {fileID: 7126479690773642657}
-  - {fileID: 1733018950}
-  - {fileID: 6886663142425683253}
-  - {fileID: 7536082286726771669}
-  - {fileID: 1245096634589936438}
-  - {fileID: 3031851041035782416}
-  - {fileID: 4835657598960108615}
   - {fileID: 2865456143402086300}
   - {fileID: 1527722513165761545}
-  - {fileID: 3430230341516321610}
-  - {fileID: 8609368542516007949}
   - {fileID: 6349880701584753920}
   - {fileID: 302631692644423289}
   - {fileID: 1554165146736378633}
@@ -56759,8 +57182,10 @@ GameObject:
   - component: {fileID: 586282699904033186}
   - component: {fileID: 3439976785409091918}
   - component: {fileID: 1408247003}
+  - component: {fileID: 4835657598960108618}
+  - component: {fileID: 4835657598960108619}
   m_Layer: 3
-  m_Name: Cylinder.072
+  m_Name: ladder16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57508,6 +57933,7 @@ GameObject:
   - component: {fileID: 2075134222}
   - component: {fileID: 2075134229}
   - component: {fileID: 8224482737923549076}
+  - component: {fileID: 8224482737923549077}
   m_Layer: 0
   m_Name: doorexit
   m_TagString: Untagged
@@ -58459,8 +58885,9 @@ GameObject:
   - component: {fileID: 7702099840345375353}
   - component: {fileID: 2899818922119162492}
   - component: {fileID: 42083606}
+  - component: {fileID: 7702099840345375356}
   m_Layer: 3
-  m_Name: Cylinder.075
+  m_Name: ladder17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59143,6 +59570,7 @@ GameObject:
   - component: {fileID: 1942805438}
   - component: {fileID: 7939862899716302188}
   - component: {fileID: 7939862899716302187}
+  - component: {fileID: 7939862899716302189}
   m_Layer: 0
   m_Name: Cylinder.004
   m_TagString: Untagged
@@ -60381,8 +60809,10 @@ GameObject:
   - component: {fileID: 5259920407803732049}
   - component: {fileID: 1034113314753997536}
   - component: {fileID: 350303953}
+  - component: {fileID: 5407411999924151507}
+  - component: {fileID: 5407411999924151508}
   m_Layer: 3
-  m_Name: Cylinder.006
+  m_Name: ladder4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61067,8 +61497,9 @@ GameObject:
   - component: {fileID: 952468536086438558}
   - component: {fileID: 1102111040127017498}
   - component: {fileID: 1035227907}
+  - component: {fileID: 4323075836280097945}
   m_Layer: 3
-  m_Name: Cylinder.058
+  m_Name: ladder1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63450,8 +63881,9 @@ GameObject:
   - component: {fileID: 2547876032259234139}
   - component: {fileID: 5660441166083823213}
   - component: {fileID: 975361395}
+  - component: {fileID: 7273774408873354104}
   m_Layer: 3
-  m_Name: Cylinder.067
+  m_Name: ladder12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63905,6 +64337,7 @@ GameObject:
   - component: {fileID: 1772920560}
   - component: {fileID: 8504181126777898139}
   - component: {fileID: 8504181126777898138}
+  - component: {fileID: 8504181126777898140}
   m_Layer: 0
   m_Name: Cylinder.005
   m_TagString: Untagged
@@ -67666,6 +68099,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1291984706164941146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4323075836280097945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2685177300568591542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
 --- !u!23 &4329687006728347752
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67912,8 +68360,9 @@ GameObject:
   - component: {fileID: 8781116122035858498}
   - component: {fileID: 4893761257889249443}
   - component: {fileID: 677537059}
+  - component: {fileID: 8781116122035858501}
   m_Layer: 3
-  m_Name: Cylinder.046
+  m_Name: ladder5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69496,6 +69945,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1291984706164941146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4835657598960108618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492414699221047419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
+--- !u!65 &4835657598960108619
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492414699221047419}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.9938264, y: 9.679999, z: 7.4768486}
+  m_Center: {x: -0.00000002980247, y: 3.8342977, z: -2.7415264}
 --- !u!1 &4848284162059096507
 GameObject:
   m_ObjectHideFlags: 0
@@ -71725,7 +72210,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5397974597691058296}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -71876,6 +72361,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1291984706164941146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5407411999924151507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2524741439147880089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
+--- !u!65 &5407411999924151508
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2524741439147880089}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.9938267, y: 9.679999, z: 7.47685}
+  m_Center: {x: -0.000015288591, y: 3.8342977, z: -2.7415116}
 --- !u!33 &5409478805119299438
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -72006,8 +72527,10 @@ GameObject:
   - component: {fileID: 405064262302506127}
   - component: {fileID: 5966253324470889953}
   - component: {fileID: 854205232}
+  - component: {fileID: 6886663142425683256}
+  - component: {fileID: 6886663142425683257}
   m_Layer: 3
-  m_Name: Cylinder.068
+  m_Name: ladder11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73071,8 +73594,10 @@ GameObject:
   - component: {fileID: 974831645848468730}
   - component: {fileID: 7031539606597317428}
   - component: {fileID: 1126072011}
+  - component: {fileID: 7126479690773642660}
+  - component: {fileID: 7126479690773642661}
   m_Layer: 3
-  m_Name: Cylinder.066
+  m_Name: ladder6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74632,8 +75157,10 @@ GameObject:
   - component: {fileID: 3273333322926148032}
   - component: {fileID: 7534369474619155963}
   - component: {fileID: 1309411253}
+  - component: {fileID: 7534369474619155966}
+  - component: {fileID: 7534369474619155967}
   m_Layer: 3
-  m_Name: Cylinder.070
+  m_Name: ladder14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74964,7 +75491,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437959573633134616}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -76725,10 +77252,45 @@ Transform:
   m_LocalPosition: {x: -18.28, y: 16.99, z: -10.762684}
   m_LocalScale: {x: 0.28013813, y: 0.6006804, z: 0.28013813}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7273774408873354101}
+  m_Children: []
   m_Father: {fileID: 1291984706164941146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6886663142425683256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449163133717768846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
+--- !u!65 &6886663142425683257
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449163133717768846}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.9938267, y: 17.359999, z: 7.47685}
+  m_Center: {x: -0.000007659197, y: 7.674296, z: -2.741542}
 --- !u!33 &6887032679622925026
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -76917,8 +77479,9 @@ GameObject:
   - component: {fileID: 3414632366487033504}
   - component: {fileID: 8378198349575974411}
   - component: {fileID: 1375749648}
+  - component: {fileID: 8378198349575974414}
   m_Layer: 3
-  m_Name: Cylinder.001
+  m_Name: ladder3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77443,10 +78006,45 @@ Transform:
   m_LocalPosition: {x: -15.134528, y: 16.931892, z: -9.969993}
   m_LocalScale: {x: 0.28013813, y: 0.6006804, z: 0.28013813}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 26629475027304828}
+  m_Children: []
   m_Father: {fileID: 1291984706164941146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7126479690773642660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5688660440006576813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
+--- !u!65 &7126479690773642661
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5688660440006576813}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.9938267, y: 9.679999, z: 7.47685}
+  m_Center: {x: -0.00000002980232, y: 3.8342977, z: -2.741504}
 --- !u!4 &7131400678075835116
 Transform:
   m_ObjectHideFlags: 0
@@ -77763,8 +78361,10 @@ GameObject:
   - component: {fileID: 8424974418953827093}
   - component: {fileID: 5457765711318436901}
   - component: {fileID: 1866179222}
+  - component: {fileID: 8424974418953827096}
+  - component: {fileID: 8424974418953827097}
   m_Layer: 3
-  m_Name: Cylinder.060
+  m_Name: ladder2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77906,13 +78506,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3317762776078503549}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071067, y: -0.000000022476414, z: 0.000000022476454, w: 0.7071068}
-  m_LocalPosition: {x: -0.0000029996, y: -0.29254, z: -2.6693}
-  m_LocalScale: {x: 0.44928423, y: 2.1442287, z: 0.22067891}
+  m_LocalRotation: {x: 0.00000016015521, y: 0.7071068, z: -0.7071067, w: 0.0000001601552}
+  m_LocalPosition: {x: -18.28, y: 16.814278, z: -10.014908}
+  m_LocalScale: {x: 0.12586164, y: 0.6006802, z: 0.1325575}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6886663142425683253}
+  m_Father: {fileID: 1291984706164941146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7273774408873354104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3317762776078503549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
 --- !u!1 &7289787103061369973
 GameObject:
   m_ObjectHideFlags: 0
@@ -78154,8 +78769,10 @@ GameObject:
   - component: {fileID: 8449258139633341782}
   - component: {fileID: 5218530375779793373}
   - component: {fileID: 539029433}
+  - component: {fileID: 8609368542516007952}
+  - component: {fileID: 8609368542516007953}
   m_Layer: 3
-  m_Name: Cylinder.076
+  m_Name: ladder18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79080,6 +79697,42 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7534369474619155966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6236679059339189685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
+--- !u!65 &7534369474619155967
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6236679059339189685}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.9938267, y: 9.679999, z: 7.47685}
+  m_Center: {x: -0.000015288591, y: 3.8342977, z: -2.741481}
 --- !u!4 &7535439929509939551
 Transform:
   m_ObjectHideFlags: 0
@@ -79981,6 +80634,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905257901899455282}
   m_Mesh: {fileID: -5408480398718735426, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
+--- !u!114 &7702099840345375356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905257901899455282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
 --- !u!1 &7703408262278222206
 GameObject:
   m_ObjectHideFlags: 0
@@ -80024,6 +80692,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395442441557744930}
   m_Mesh: {fileID: 1418337770082825235, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
+--- !u!114 &7715843365632651345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395442441557744930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
 --- !u!33 &7722832026017981877
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -80492,7 +81175,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2829849317198816259}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -81044,6 +81727,92 @@ MonoBehaviour:
   openSound: {fileID: 8300000, guid: 071c3c3573c205d4ca548094f076f0bd, type: 3}
   closeSound: {fileID: 0}
   doorAudioSource: {fileID: 0}
+--- !u!114 &7939862899716302189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2150194601175655115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable
+  m_InteractionManager: {fileID: 1699339736}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7939862899716302188}
+        m_TargetAssemblyTypeName: ProximityDoor, Assembly-CSharp
+        m_MethodName: ToggleDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!23 &7945644569667046217
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -81121,7 +81890,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7948835607258569577}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -81388,7 +82157,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887067543317760065}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -82411,6 +83180,104 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8224482737923549077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692519274552753406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable
+  m_InteractionManager: {fileID: 1699339736}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2075134221}
+        m_TargetAssemblyTypeName: ProximityDoor, Assembly-CSharp
+        m_MethodName: ToggleDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2075134229}
+        m_TargetAssemblyTypeName: ThreeStateQuestItem, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!23 &8224759322153678751
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -83077,6 +83944,21 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8378198349575974414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6936662254096213890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
 --- !u!33 &8400395544942354028
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83143,6 +84025,42 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7248353072404824751}
   m_Mesh: {fileID: -4325330369225871407, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
+--- !u!114 &8424974418953827096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7248353072404824751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
+--- !u!65 &8424974418953827097
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7248353072404824751}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5486557, y: 7.7181854, z: 7.47685}
+  m_Center: {x: 0.27741325, y: 2.8533893, z: -2.7415192}
 --- !u!4 &8433222698964955415
 Transform:
   m_ObjectHideFlags: 0
@@ -83318,7 +84236,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8180868761368372840}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -83803,6 +84721,92 @@ MonoBehaviour:
   openSound: {fileID: 8300000, guid: 071c3c3573c205d4ca548094f076f0bd, type: 3}
   closeSound: {fileID: 0}
   doorAudioSource: {fileID: 0}
+--- !u!114 &8504181126777898140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3510777194172550318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRSimpleInteractable
+  m_InteractionManager: {fileID: 1699339736}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 1
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 0
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8504181126777898139}
+        m_TargetAssemblyTypeName: ProximityDoor, Assembly-CSharp
+        m_MethodName: ToggleDoor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
 --- !u!4 &8506117067916032072
 Transform:
   m_ObjectHideFlags: 0
@@ -83838,13 +84842,29 @@ GameObject:
   - component: {fileID: 1311505471569589003}
   - component: {fileID: 6159000365628006736}
   - component: {fileID: 1747382864}
+  - component: {fileID: 8513035961545651959}
   m_Layer: 3
-  m_Name: Cylinder.069
+  m_Name: ladder13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8513035961545651959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513035961545651956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
 --- !u!33 &8522324098106497409
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83995,7 +85015,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4710892272521093487}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -84202,6 +85222,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1291984706164941146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8609368542516007952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376304752988046249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
+--- !u!65 &8609368542516007953
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7376304752988046249}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.9938267, y: 7.7599993, z: 7.47685}
+  m_Center: {x: -0.00003054738, y: 2.8742976, z: -2.7415116}
 --- !u!1 &8610376413121454439
 GameObject:
   m_ObjectHideFlags: 0
@@ -84447,13 +85503,51 @@ GameObject:
   - component: {fileID: 5614057389237067169}
   - component: {fileID: 8458535161576162123}
   - component: {fileID: 437422654}
+  - component: {fileID: 8627040429275389470}
+  - component: {fileID: 8627040429275389471}
   m_Layer: 3
-  m_Name: Cylinder.047
+  m_Name: ladder7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8627040429275389470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8627040429275389467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
+--- !u!65 &8627040429275389471
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8627040429275389467}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1.9938269, y: 5.84, z: 7.4768505}
+  m_Center: {x: 0.000015228987, y: 1.9142966, z: -2.7415118}
 --- !u!33 &8627916085661390507
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84964,6 +86058,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4378760929045489648}
   m_Mesh: {fileID: 3313900681326472401, guid: 56b21009455fbb04d90a6551c324fe2c, type: 3}
+--- !u!114 &8781116122035858501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4378760929045489648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
 --- !u!23 &8783600606920326843
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85431,7 +86540,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8682616512526389270}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -86607,13 +87716,29 @@ GameObject:
   - component: {fileID: 6969797069811016157}
   - component: {fileID: 1746517763554864133}
   - component: {fileID: 1078530342}
+  - component: {fileID: 9122083509562646300}
   m_Layer: 3
-  m_Name: Cylinder.071
+  m_Name: ladder15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9122083509562646300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9122083509562646297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98da4e8b462920a4bbaeb05fb147c049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoLadder
+  jumpAction: {fileID: -3875704489234743591, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  climbDuration: 2
+  landingOffset: {x: 0, y: 0.3, z: 0.5}
 --- !u!33 &9147186206288614241
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -87137,7 +88262,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8463122105712545163}
   serializedVersion: 5
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_LinearDamping: 0.02
   m_AngularDamping: 0.08
   m_CenterOfMass: {x: 0, y: 0, z: 0}
