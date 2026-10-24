@@ -6253,15 +6253,15 @@ MonoBehaviour:
       serializedProperties: []
   frontParameters:
     enabled: 1
-    color: {r: 0.37711412, g: 0.7106918, b: 0.36428538, a: 1}
+    color: {r: 0.2602652, g: 0.8415094, b: 0.2397508, a: 1}
     dilateShift: 1
     blurShift: 1
     fillPass:
-      shader: {fileID: 4800000, guid: 77ea1b923175bd6439416078316b6264, type: 3}
+      shader: {fileID: 0}
       serializedProperties:
       - PropertyName: _PublicColor
         Property:
-          ColorValue: {r: 0.37711412, g: 0.7106918, b: 0.36428538, a: 0.7294118}
+          ColorValue: {r: 0.19218118, g: 0.78867924, b: 0.1711284, a: 0.7294118}
           FloatValue: 0
           VectorValue: {x: 0, y: 0, z: 0, w: 0}
           PropertyType: 0
@@ -10375,11 +10375,11 @@ MonoBehaviour:
           PropertyType: 3
   frontParameters:
     enabled: 1
-    color: {r: 0.72955966, g: 0.72955966, b: 0.72955966, a: 1}
+    color: {r: 0.20943397, g: 1, b: 0.26458976, a: 1}
     dilateShift: 1
     blurShift: 1
     fillPass:
-      shader: {fileID: 4800000, guid: 4b218962224bcd449ba16572d6a50cee, type: 3}
+      shader: {fileID: 0}
       serializedProperties:
       - PropertyName: _PublicOuterColor
         Property:
@@ -10407,7 +10407,7 @@ MonoBehaviour:
           PropertyType: 2
       - PropertyName: _PublicColor
         Property:
-          ColorValue: {r: 1, g: 1, b: 1, a: 0.5647059}
+          ColorValue: {r: 0.54905653, g: 1, b: 0.6728984, a: 0.5647059}
           FloatValue: 1
           VectorValue: {x: 0, y: 0, z: 0, w: 0}
           PropertyType: 0
@@ -10865,9 +10865,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175267609}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.549, y: 1.141, z: 1.315}
-  m_LocalScale: {x: 0.27930105, y: 0.2530673, z: 0.5158492}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.70710677}
+  m_LocalPosition: {x: -0.54153967, y: 1.096, z: 1.3191476}
+  m_LocalScale: {x: 0.1055568, y: 0.1055568, z: 0.1055568}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6658624357613099284}
@@ -10928,7 +10928,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175267609}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -2905942613915160320, guid: 29ffa442ba173e24f9d03381061c6e21, type: 3}
 --- !u!114 &1175267614
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -11095,11 +11095,11 @@ MonoBehaviour:
           PropertyType: 3
   frontParameters:
     enabled: 1
-    color: {r: 0.72955966, g: 0.72955966, b: 0.72955966, a: 1}
+    color: {r: 0.12966904, g: 1, b: 0.013207495, a: 1}
     dilateShift: 1
     blurShift: 1
     fillPass:
-      shader: {fileID: 4800000, guid: 4b218962224bcd449ba16572d6a50cee, type: 3}
+      shader: {fileID: 0}
       serializedProperties:
       - PropertyName: _PublicOuterColor
         Property:
@@ -11127,7 +11127,7 @@ MonoBehaviour:
           PropertyType: 2
       - PropertyName: _PublicColor
         Property:
-          ColorValue: {r: 1, g: 1, b: 1, a: 0.5647059}
+          ColorValue: {r: 0.15457404, g: 1, b: 0, a: 0.5647059}
           FloatValue: 1
           VectorValue: {x: 0, y: 0, z: 0, w: 0}
           PropertyType: 0
@@ -12796,11 +12796,11 @@ MonoBehaviour:
           PropertyType: 3
   frontParameters:
     enabled: 1
-    color: {r: 0.72955966, g: 0.72955966, b: 0.72955966, a: 1}
+    color: {r: 0, g: 1, b: 0.11011791, a: 1}
     dilateShift: 1
     blurShift: 1
     fillPass:
-      shader: {fileID: 4800000, guid: 4b218962224bcd449ba16572d6a50cee, type: 3}
+      shader: {fileID: 0}
       serializedProperties:
       - PropertyName: _PublicOuterColor
         Property:
@@ -12828,7 +12828,7 @@ MonoBehaviour:
           PropertyType: 2
       - PropertyName: _PublicColor
         Property:
-          ColorValue: {r: 1, g: 1, b: 1, a: 0.5647059}
+          ColorValue: {r: 0.13216566, g: 0.7509433, b: 0, a: 0.81960785}
           FloatValue: 1
           VectorValue: {x: 0, y: 0, z: 0, w: 0}
           PropertyType: 0
@@ -28677,7 +28677,7 @@ MonoBehaviour:
       shader: {fileID: 0}
       serializedProperties: []
   backParameters:
-    enabled: 1
+    enabled: 0
     color: {r: 0.37711412, g: 0.7106918, b: 0.36428538, a: 1}
     dilateShift: 1
     blurShift: 1
@@ -28686,15 +28686,15 @@ MonoBehaviour:
       serializedProperties: []
   frontParameters:
     enabled: 1
-    color: {r: 0.37711412, g: 0.7106918, b: 0.36428538, a: 1}
+    color: {r: 0.032289736, g: 0.94716984, b: 0, a: 1}
     dilateShift: 1
     blurShift: 1
     fillPass:
-      shader: {fileID: 4800000, guid: 77ea1b923175bd6439416078316b6264, type: 3}
+      shader: {fileID: 0}
       serializedProperties:
       - PropertyName: _PublicColor
         Property:
-          ColorValue: {r: 0.37711412, g: 0.7106918, b: 0.36428538, a: 0.46666667}
+          ColorValue: {r: 0.2381763, g: 0.78867924, b: 0.21874687, a: 0.46666667}
           FloatValue: 0
           VectorValue: {x: 0, y: 0, z: 0, w: 0}
           PropertyType: 0
@@ -28758,6 +28758,36 @@ MonoBehaviour:
           FloatValue: 0.2
           VectorValue: {x: 0, y: 0, z: 0, w: 0}
           PropertyType: 3
+      - PropertyName: _PublicGapColor
+        Property:
+          ColorValue: {r: 1, g: 0, b: 0, a: 0.2}
+          FloatValue: 0.2
+          VectorValue: {x: 0, y: 0, z: 0, w: 0}
+          PropertyType: 0
+      - PropertyName: _PublicSize
+        Property:
+          ColorValue: {r: 1, g: 0, b: 0, a: 0.2}
+          FloatValue: 1
+          VectorValue: {x: 0, y: 0, z: 0, w: 0}
+          PropertyType: 2
+      - PropertyName: _PublicGapSize
+        Property:
+          ColorValue: {r: 1, g: 0, b: 0, a: 0.2}
+          FloatValue: 0.2
+          VectorValue: {x: 0, y: 0, z: 0, w: 0}
+          PropertyType: 3
+      - PropertyName: _PublicSoftness
+        Property:
+          ColorValue: {r: 1, g: 0, b: 0, a: 0.2}
+          FloatValue: 0.75
+          VectorValue: {x: 0, y: 0, z: 0, w: 0}
+          PropertyType: 3
+      - PropertyName: _PublicSpeed
+        Property:
+          ColorValue: {r: 1, g: 0, b: 0, a: 0.2}
+          FloatValue: 1
+          VectorValue: {x: 0, y: 0, z: 0, w: 0}
+          PropertyType: 2
 --- !u!65 &6573175593186184486
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35690,11 +35720,11 @@ MonoBehaviour:
       serializedProperties: []
   frontParameters:
     enabled: 1
-    color: {r: 0.37711412, g: 0.7106918, b: 0.36428538, a: 1}
+    color: {r: 0.2924527, g: 1, b: 0.3138935, a: 1}
     dilateShift: 1
     blurShift: 1
     fillPass:
-      shader: {fileID: 4800000, guid: 77ea1b923175bd6439416078316b6264, type: 3}
+      shader: {fileID: 0}
       serializedProperties:
       - PropertyName: _PublicColor
         Property:

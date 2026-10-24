@@ -3870,6 +3870,7 @@ GameObject:
   - component: {fileID: 243607282}
   - component: {fileID: 243607281}
   - component: {fileID: 243607280}
+  - component: {fileID: 243607283}
   m_Layer: 0
   m_Name: playsoundonenter (4)
   m_TagString: Untagged
@@ -3940,7 +3941,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 9edafea0b75c55941868588c60d7fe9e, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.12
+  m_Volume: 0.059
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4069,6 +4070,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!167 &243607283
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243607278}
+  m_Enabled: 1
+  m_MinDistance: 10.4979515
+  m_MaxDistance: 15
+  m_ReverbPreset: 9
+  m_Room: -1000
+  m_RoomHF: 0
+  m_DecayTime: 2.91
+  m_DecayHFRatio: 1.3
+  m_Reflections: -602
+  m_ReflectionsDelay: 0.015
+  m_Reverb: -302
+  m_ReverbDelay: 0.022
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!1 &245554197
 GameObject:
   m_ObjectHideFlags: 0
