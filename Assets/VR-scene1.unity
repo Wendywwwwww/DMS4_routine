@@ -14476,7 +14476,7 @@ MonoBehaviour:
   itemParts:
   - renderer: {fileID: 1628627449}
     defaultMaterial: {fileID: 2100000, guid: 56bf996ee9a219d488ad11998c852959, type: 2}
-    completedMaterial: {fileID: 2100000, guid: 45e4a49755dca964fb5cf25c52f9482c, type: 2}
+    completedMaterial: {fileID: 2100000, guid: 90890e0b0dfea844ea4185c1678dcabc, type: 2}
   itemAudioSource: {fileID: 0}
   outlinableComponent: {fileID: 1628627453}
   targetInteractionScripts: []
