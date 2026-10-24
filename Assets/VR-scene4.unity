@@ -1281,7 +1281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &728251107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2066,6 +2066,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950108616}
   m_CullTransparentMesh: 1
+--- !u!4 &991401189 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 1206427918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &994672448
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,14 +2100,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a54e11d91bce4b4a92e4cd5c2eb9eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InfiniteOfficeManager
-  player: {fileID: 1637455724}
-  playerCamera: {fileID: 1434260701}
+  player: {fileID: 991401189}
+  playerCamera: {fileID: 1206427922}
   chunkSize: 8.35
   renderDistance: 3
   normalCubiclePrefab: {fileID: 6410600089638390938, guid: b29131a327e28804cba5c1e0da5b8e40, type: 3}
   specialCubiclePrefabs:
   - {fileID: 6410600089638390938, guid: d9cb10a607e52654b992d56dca96bcdd, type: 3}
-  stepsBeforeSpecialAllowed: 10
+  stepsBeforeSpecialAllowed: 1
   specialChance: 1
   specialCooldownSteps: 3
 --- !u!4 &994672450
@@ -2419,7 +2424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.179
+      value: 8.54
       objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3825,7 +3830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1376154964
 Transform:
   m_ObjectHideFlags: 0

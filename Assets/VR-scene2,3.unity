@@ -15782,7 +15782,7 @@ MonoBehaviour:
   unlitMaterial: {fileID: 2100000, guid: 28d4322f7cf4b0947ad1cdc41c0e203c, type: 2}
   litMaterial: {fileID: 2100000, guid: 8203463c96f3db74e834d3470a3611f4, type: 2}
   whiteFlashImage: {fileID: 1307770446}
-  nextSceneName: PC-scene4
+  nextSceneName: VR-scene4
 --- !u!82 &858524120
 AudioSource:
   m_ObjectHideFlags: 0
